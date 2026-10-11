@@ -18,6 +18,9 @@
       background: white;
       border-bottom: 3px solid #b8e4f8;
       padding: 8px 5%;
+      display: flex;
+align-items: center;
+justify-content: space-between;
     }
     .brand {
   max-width: 450px;
@@ -34,6 +37,23 @@
       color: #124b91;
       margin: 5px 0;
     }
+    .instagram-link {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 30px;
+    background: linear-gradient(120deg, #eaf7ff, #fff0f7);
+    color: #174f91;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(35, 120, 200, 0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.instagram-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(35, 120, 200, 0.25);
+}
     nav {
       background: #124b91;
       padding: 15px 5%;
@@ -121,6 +141,16 @@
       nav { gap: 12px; }
       nav a { font-size: 12px; }
       .hero { padding: 65px 20px; }
+      header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.instagram-link {
+  align-self: flex-end;
+  font-size: 13px;
+  padding: 9px 14px;
+}
     }
   </style>
 </head>
@@ -131,6 +161,9 @@
   <div class="brand">
     <img src="新ホームページ用.png" alt="福岡進学塾｜SINCE 1975 福岡総合教育学院" style="display:block; width:100%; height:auto;">
   </div>
+  <a class="instagram-link" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+  📸 塾内の様子をInstagramでチェック♪
+</a>
 </header>
 
 
