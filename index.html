@@ -118,6 +118,11 @@ justify-content: space-between;
       padding: 35px 12px;
       font-size: 19px;
       font-weight: bold;
+      box-sizing: border-box;
+min-height: 100%;
+      display: flex;
+flex-direction: column;
+justify-content: flex-start;
     }
     .split-course {
       display: grid;
@@ -322,7 +327,7 @@ justify-content: space-between;
 </a>
 
     <a href="kids.html" class="course"
-style="display:block; padding:0; overflow:hidden; text-decoration:none; color:#124b91; border:1px solid #ffd4a8; transition:transform 0.3s, box-shadow 0.3s;"
+style="display:flex; flex-direction:column; padding:0; overflow:hidden; text-decoration:none; color:#124b91; border:1px solid #ffd4a8; transition:transform 0.3s, box-shadow 0.3s;"
 onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 10px 24px rgba(120,70,180,0.18)'"
 onmouseout="this.style.transform=''; this.style.boxShadow=''">
 
@@ -330,7 +335,7 @@ onmouseout="this.style.transform=''; this.style.boxShadow=''">
        alt="キッズくらぶの学習風景"
        style="width:100%; height:240px; object-fit:cover; display:block;">
 
-  <div style="padding:40px 12px 14px; text-align:center; background:#fff7ed;">
+  <div style="padding:14px 12px; text-align:center; background:#fff7ed; flex:1; display:flex; flex-direction:column; justify-content:flex-end;">
 
     <div style="font-size:25px; font-weight:800; color:#f28c28;">
       キッズくらぶ
@@ -351,7 +356,7 @@ onmouseout="this.style.transform=''; this.style.boxShadow=''">
   </div>
 </a>
     <a href="english.html" class="course"
-   style="display:block; padding:0; overflow:hidden; text-decoration:none; color:#124b91; border:1px solid #dccbff; transition:transform 0.3s, box-shadow 0.3s;"
+   style="display:flex; flex-direction:column; padding:0; overflow:hidden; text-decoration:none; color:#124b91; border:1px solid #dccbff; transition:transform 0.3s, box-shadow 0.3s;"
    onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 10px 24px rgba(120,70,180,0.18)'"
    onmouseout="this.style.transform=''; this.style.boxShadow=''">
 
@@ -359,10 +364,10 @@ onmouseout="this.style.transform=''; this.style.boxShadow=''">
        alt="小学生英語・オンライン英語の授業風景"
        style="width:100%; height:240px; object-fit:cover; display:block;">
 
-  <div style="padding:14px 12px; text-align:center; background:#f8f3ff;">
+  <div style="padding:14px 12px; text-align:center; background:#f8f3ff; flex:1; display:flex; flex-direction:column; justify-content:flex-end;">
 
-    <div style="font-size:25px; font-weight:800; color:#8745bd;">
-      小学生英語<br>オンライン英語
+    <div style="font-size:20px; font-weight:800; color:#8745bd;">
+      小学生英語・オンライン英語
     </div>
 
     <div style="margin:8px 0; font-size:15px;">
