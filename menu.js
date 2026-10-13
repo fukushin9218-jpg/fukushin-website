@@ -1,0 +1,45 @@
+
+document.addEventListener("DOMContentLoaded", function () {
+  const header = document.getElementById("common-header");
+  if (!header) return;
+
+  header.innerHTML = `
+    <div style="background:white; padding:12px 5%; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
+
+      <a href="index.html#home" style="display:block;">
+        <img src="新ホームページ用.png"
+             alt="福岡進学塾"
+             style="width:350px; max-width:100%; display:block;">
+      </a>
+
+      <div style="font-size:28px; font-weight:bold; color:#124b91; text-align:center;">
+        那珂川校　｜　春日校
+      </div>
+
+      <div style="border:2px solid #ff9bc8; border-radius:20px; padding:12px 22px; text-align:center; background:#f4f8ff; color:#124b91;">
+        <div style="font-size:19px; font-weight:bold; color:#ff3485;">
+          塾内の様子をInstagramでチェック♪
+        </div>
+        <div style="font-size:18px; font-weight:bold; margin-top:6px;">
+          📸 タップしてみてね！
+        </div>
+      </div>
+
+    </div>
+
+    <nav style="position:sticky; top:0; z-index:1000; background:#1c508f; padding:20px 12px; display:flex; justify-content:center; align-items:center; gap:28px; flex-wrap:wrap;">
+      <a href="index.html#home">ホーム</a>
+      <a href="index.html#news">新着情報</a>
+      <a href="index.html#course">学びのご案内</a>
+      <a href="index.html#school">校舎案内</a>
+      <a href="index.html#contact">お問い合わせ</a>
+    </nav>
+  `;
+
+  header.querySelectorAll("nav a").forEach(function (link) {
+    link.style.color = "white";
+    link.style.textDecoration = "none";
+    link.style.fontWeight = "bold";
+    link.style.fontSize = "17px";
+  });
+});
