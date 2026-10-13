@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   header.innerHTML = `
     <div style="background:white; padding:12px 5%; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;">
 
-      <a href="index.html#home" style="display:block;">
+      <a href="index.html" style="display:block;">
         <img src="新ホームページ用.png"
              alt="福岡進学塾"
              style="width:350px; max-width:100%; display:block;">
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
     <nav style="position:sticky; top:0; z-index:1000; background:#1c508f; padding:20px 12px; display:flex; justify-content:center; align-items:center; gap:28px; flex-wrap:wrap;">
-      <a href="index.html#home">ホーム</a>
+      <a href="index.html">ホーム</a>
       <a href="index.html#news">新着情報</a>
       <a href="index.html#course">学びのご案内</a>
       <a href="index.html#school">校舎案内</a>
