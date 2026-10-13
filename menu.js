@@ -21,7 +21,22 @@ document.addEventListener("DOMContentLoaded", function () {
           塾内の様子をInstagramでチェック♪
         </div>
         <div style="font-size:18px; font-weight:bold; margin-top:6px;">
-          📸 タップしてみてね！
+          <span style="display:inline-flex; align-items:center; gap:12px;">
+  <svg width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Instagram">
+    <defs>
+      <linearGradient id="instaGradient" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0%" stop-color="#ffcb42"/>
+        <stop offset="45%" stop-color="#fa315f"/>
+        <stop offset="100%" stop-color="#8646c8"/>
+      </linearGradient>
+    </defs>
+    <rect x="2" y="2" width="60" height="60" rx="17" fill="url(#instaGradient)"/>
+    <rect x="15" y="15" width="34" height="34" rx="10" fill="none" stroke="white" stroke-width="4"/>
+    <circle cx="32" cy="32" r="9" fill="none" stroke="white" stroke-width="4"/>
+    <circle cx="44" cy="20" r="3" fill="white"/>
+  </svg>
+  タップしてみてね！
+</span>
         </div>
       </div>
 
