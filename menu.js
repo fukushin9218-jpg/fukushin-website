@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         那珂川校　｜　春日校
       </div>
 
-      <div style="border:2px solid #ff9bc8; border-radius:20px; padding:12px 22px; text-align:center; background:#f4f8ff; color:#124b91;">
+      <a href="https://www.instagram.com/fukuokashingakujuku_official/" target="_blank" rel="noopener noreferrer" style="border:2px solid #ff9bc8; border-radius:20px; padding:12px 22px; text-align:center; background:#f4f8ff; color:#124b91; transition:transform 0.3s, box-shadow 0.3s; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 10px 24px rgba(255,80,150,0.25)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
         <div style="font-size:19px; font-weight:bold; color:#ff3485;">
           塾内の様子をInstagramでチェック♪
         </div>
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
       </div>
 
-    </div>
+    </a>
 
     <nav style="position:sticky; top:0; z-index:1000; background:#1c508f; padding:20px 12px; display:flex; justify-content:center; align-items:center; gap:28px; flex-wrap:wrap;">
       <a href="index.html">ホーム</a>
