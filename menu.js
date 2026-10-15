@@ -38,10 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
   タップしてみてね！
 </span>
         </div>
-      </div>
 
     </a>
-
+</div>
     <nav style="position:sticky; top:0; z-index:1000; background:#1c508f; padding:20px 12px; display:flex; justify-content:center; align-items:center; gap:28px; flex-wrap:wrap;">
       <a href="index.html">ホーム</a>
       <a href="index.html#news">新着情報</a>
