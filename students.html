@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>塾生専用 | 福岡進学塾</title>
+  <script src="menu.js" defer></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Arial", "Meiryo", sans-serif;
+      background: #eef7ff;
+      color: #124b91;
+    }
+    .login-box {
+      max-width: 430px;
+      margin: 70px auto;
+      padding: 40px 30px;
+      background: white;
+      border-radius: 22px;
+      box-shadow: 0 8px 28px rgba(0, 50, 110, 0.1);
+      text-align: center;
+    }
+    h1 { font-size: 28px; }
+    p { line-height: 1.8; }
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #bdd5ec;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #14549a;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #2875bd; }
+    #message { color: #d63355; }
+  </style>
+</head>
+<body>
+
+  <div id="common-header"></div>
+
+  <main class="login-box">
+    <h1>塾生専用ページ</h1>
+    <p>福岡進学塾の塾生専用ページです。<br>
+    ユーザー名とパスワードを入力してください。</p>
+
+    <input id="username" type="text"
+           placeholder="ユーザー名" autocomplete="username">
+
+    <input id="password" type="password"
+           placeholder="パスワード" autocomplete="current-password">
+
+    <button type="button" onclick="login()">ログイン</button>
+
+    <p id="message"></p>
+  </main>
+
+  <script>
+    function login() {
+      document.getElementById("message").textContent =
+        "ログイン機能は準備中です。";
+    }
+  </script>
+
+</body>
+</html>
