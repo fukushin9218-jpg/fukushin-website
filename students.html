@@ -70,11 +70,28 @@
   </main>
 
   <script>
-    function login() {
-      document.getElementById("message").textContent =
-        "ログイン機能は準備中です。";
+    
+  // 塾生共通のログイン設定（後から変更できます）
+  const LOGIN_USER = "student";
+  const LOGIN_PASS = "fukushin2026";
+
+  function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("message");
+
+    if (username === LOGIN_USER && password === LOGIN_PASS) {
+      document.querySelector(".login-box").innerHTML = `
+        <h1>塾生専用ページ</h1>
+        <p>ログインしました！</p>
+        <h2>学校検索・入試情報</h2>
+        <p>この場所に学校情報や入試情報、画像などを追加していきます。</p>
+      `;
+    } else {
+      message.textContent = "ユーザー名またはパスワードが違います。";
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
