@@ -196,6 +196,7 @@
   <p>私立・公立入試の制度をわかりやすく解説します。</p>
 `;
       filterSchools("すべて");
+      showFscoreTable();
     } else {
       message.textContent = "ユーザー名またはパスワードが違います。";
     }
@@ -254,7 +255,42 @@ const schools = [
   {name:"北九州高専",type:"高専",score:"F61",course:"生産デザイン工学",url:"https://www.kct.ac.jp/"},
   {name:"有明高専",type:"高専",score:"F60",course:"創造工学",url:"https://www.ariake-nct.ac.jp/"}
 ];
+// Fスコア一覧表（令和8年6月更新）
+function showFscoreTable() {
+  const area = document.getElementById("fscoreTable");
+  if (!area) return;
 
+  let html = `
+    <div style="overflow-x:auto; margin:20px 0;">
+      <table style="width:100%; border-collapse:collapse; text-align:left;">
+        <thead>
+          <tr style="background:#EAF3FF;">
+            <th style="padding:12px; border:1px solid #ddd; color:#23845A;">公立高校・高専</th>
+            <th style="padding:12px; border:1px solid #ddd; text-align:center;">Fスコア</th>
+            <th style="padding:12px; border:1px solid #ddd; color:#19569B;">私立高校</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+
+  for (let score = 70; score >= 37; score--) {
+    html += `
+      <tr>
+        <td style="padding:12px; border:1px solid #ddd;"></td>
+        <td style="padding:12px; border:1px solid #ddd; text-align:center; font-weight:bold;">${score}</td>
+        <td style="padding:12px; border:1px solid #ddd;"></td>
+      </tr>
+    `;
+  }
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  area.innerHTML = html;
+}
 // 学校名で検索する機能
     let selectedSchoolType = "すべて";
 
