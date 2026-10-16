@@ -64,6 +64,13 @@
 .average-buttons button:hover {
   background: #D5E9FF;
 }
+
+/* 平均点グラフ：選択中の科目 */
+.average-buttons button.active {
+  background: #19569B;
+  color: #FFFFFF;
+  border-color: #19569B;
+}
     #message { color: #d63355; }
     /* 入試日程のカード */
 .exam-grid {
@@ -408,7 +415,12 @@ function colorSchoolNames(text, color) {
     function showExamAverageChart(subject = "total") {
   const area = document.getElementById("examAverageChart");
   if (!area) return;
+// 選択中の科目ボタンだけ色を変える
+const subjects = ["total", "japanese", "math", "social", "science", "english"];
 
+document.querySelectorAll(".average-buttons button").forEach((button, index) => {
+  button.classList.toggle("active", subjects[index] === subject);
+});
   const width = 900;
   const height = 300;
   const left = 55;
