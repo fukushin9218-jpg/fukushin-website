@@ -165,6 +165,12 @@
 <p>学校名を入力すると、該当する高校を探せます。</p>
 
 <div class="school-search">
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
+  <button type="button" onclick="filterSchools('すべて')">すべて</button>
+  <button type="button" onclick="filterSchools('公立')">公立</button>
+  <button type="button" onclick="filterSchools('私立')">私立</button>
+  <button type="button" onclick="filterSchools('高専')">高専</button>
+</div>
   <input
     type="search"
     id="schoolKeyword"
@@ -248,6 +254,12 @@ const schools = [
 ];
 
 // 学校名で検索する機能
+    let selectedSchoolType = "すべて";
+
+function filterSchools(type) {
+  selectedSchoolType = type;
+  searchSchools();
+}
 function searchSchools() {
   const input = document.getElementById("schoolKeyword");
   const results = document.getElementById("schoolResults");
@@ -255,9 +267,10 @@ function searchSchools() {
   if (!input || !results) return;
 
   const keyword = input.value.trim();
-  const filtered = schools.filter(school =>
-    school.name.includes(keyword)
-  );
+ const filtered = schools.filter(school =>
+  school.name.includes(keyword) &&
+  (selectedSchoolType === "すべて" || school.type === selectedSchoolType)
+);
 
   if (filtered.length === 0) {
     results.innerHTML = "<p>該当する学校がありません。</p>";
