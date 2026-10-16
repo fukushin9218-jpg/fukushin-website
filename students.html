@@ -14,7 +14,7 @@
       color: #124b91;
     }
     .login-box {
-      max-width: 430px;
+      max-width: 1100px;
       margin: 70px auto;
       padding: 40px 30px;
       background: white;
@@ -22,6 +22,9 @@
       box-shadow: 0 8px 28px rgba(0, 50, 110, 0.1);
       text-align: center;
     }
+    .login-box:not(.logged-in) {
+  max-width: 430px;
+}
     h1 { font-size: 28px; }
     p { line-height: 1.8; }
     input {
@@ -81,6 +84,7 @@
     const message = document.getElementById("message");
 
     if (username === LOGIN_USER && password === LOGIN_PASS) {
+      document.querySelector(".login-box").classList.add("logged-in");
      document.querySelector(".login-box").innerHTML = `
   <h1>高校入試・進路情報</h1>
   <p>福岡進学塾 塾生専用ページへようこそ！</p>
