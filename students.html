@@ -309,12 +309,29 @@ const fscoreData = {
 38: { public: "", private: "" },
 37: { public: "水産（海洋・食品流通・アクアライフ）／早良（スポーツコミュニケーション）", private: "福岡第一（国公立大学進学・普通・アスリート特進・製菓・音楽・ソーシャル心理・機械・航空・自動車メカニック・建築デザイン・コンピュータAI・デザイン・マンガ・ドローン・保育・パラマ）／第一薬科大付属（医療系特進・普通・芸能・ビジネス・食ビジネス・ビューティービジネス・保育・動物愛育・ハイフレックス普通・スポーツマネジメント・食マネジメント・コスメティックマネジメント）" }
 };
+  // 学校名だけを色付き・太字にする
+function colorSchoolNames(text, color) {
+  if (!text) return "";
+
+  return text.split("／").map(item => {
+    const match = item.trim().match(/^(.+?)(\s*[（(].*)$/);
+    if (!match) return item;
+
+    const schoolName = match[1];
+    const course = match[2];
+
+    const isKosen = /久留米高専|北九州高専|有明高専/.test(schoolName);
+    const nameColor = isKosen ? "#E67E22" : color;
+
+    return `<strong style="color:${nameColor};">${schoolName}</strong>${course}`;
+  }).join(" ／ ");
+}
   for (let score = 70; score >= 37; score--) {
     html += `
       <tr>
-        <td style="padding:12px; border:1px solid #ddd; text-align:left;">${(fscoreData[score]?.public || "").replace(/(久留米高専|北九州高専|有明高専)/g, '<strong style="color:#E67E22;">$1</strong>')}</td>
+        <td style="padding:12px; border:1px solid #ddd; text-align:left;">${colorSchoolNames(fscoreData[score]?.public || "", "#16803C")}</td>
 <td style="padding:12px; border:1px solid #ddd; text-align:center; font-weight:bold;">${score}</td>
-<td style="padding:12px; border:1px solid #ddd; text-align:left;">${fscoreData[score]?.private || ""}</td>
+<td style="padding:12px; border:1px solid #ddd; text-align:left;">${colorSchoolNames(fscoreData[score]?.private || "", "#164A8A")}</td>
       </tr>
     `;
   }
