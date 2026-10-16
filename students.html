@@ -207,6 +207,7 @@
 `;
       filterSchools("すべて");
       showFscoreTable();
+      showExamAverageChart();
     } else {
       message.textContent = "ユーザー名またはパスワードが違います。";
     }
@@ -358,6 +359,85 @@ function colorSchoolNames(text, color) {
   `;
 
   area.innerHTML = html;
+}
+    // 福岡県公立高校入試・平均点推移
+// 平成21年度〜令和8年度
+// ここから平均点グラフを作成
+    const examAverageData = [
+  { year:"H21", japanese:33, math:35, social:37, science:38, english:33, total:175 },
+  { year:"H22", japanese:36, math:36, social:33, science:34, english:36, total:175 },
+  { year:"H23", japanese:34, math:34, social:31, science:35, english:31, total:164 },
+  { year:"H24", japanese:31, math:30, social:30, science:38, english:28, total:158 },
+  { year:"H25", japanese:32, math:31, social:34, science:30, english:30, total:156 },
+  { year:"H26", japanese:34, math:27, social:33, science:25, english:31, total:150 },
+  { year:"H27", japanese:36, math:34, social:35, science:33, english:31, total:168 },
+  { year:"H28", japanese:39, math:29, social:31, science:37, english:30, total:165 },
+  { year:"H29", japanese:39, math:33, social:31, science:32, english:29, total:164 },
+  { year:"H30", japanese:33, math:31, social:30, science:32, english:32, total:161 },
+  { year:"H31", japanese:39, math:32, social:38, science:32, english:34, total:175 },
+  { year:"R2", japanese:36, math:33, social:29, science:32, english:33, total:163 },
+  { year:"R3", japanese:39, math:29, social:35, science:36, english:35, total:174 },
+  { year:"R4", japanese:36, math:32, social:33, science:37, english:34, total:172 },
+  { year:"R5", japanese:31, math:30, social:33, science:38, english:34, total:165 },
+  { year:"R6", japanese:39, math:32, social:36, science:38, english:37, total:181 },
+  { year:"R7", japanese:37, math:28, social:34, science:29, english:31, total:159 },
+  { year:"R8", japanese:43, math:31, social:32, science:31, english:31, total:168 }
+];
+    function showExamAverageChart() {
+  const area = document.getElementById("examAverageChart");
+  if (!area) return;
+
+  const width = 900;
+  const height = 300;
+  const left = 55;
+  const right = 20;
+  const top = 35;
+  const bottom = 55;
+
+  const minScore = 140;
+  const maxScore = 190;
+
+  const x = i => left + i * (width - left - right) / (examAverageData.length - 1);
+  const y = score => top + (maxScore - score) * (height - top - bottom) / (maxScore - minScore);
+
+  const points = examAverageData
+    .map((d, i) => `${x(i)},${y(d.total)}`)
+    .join(" ");
+
+  let svg = `<svg viewBox="0 0 ${width} ${height}"
+    style="width:100%;height:auto;display:block;"
+    role="img" aria-label="公立高校入試の5教科合計平均点の推移">`;
+
+  for (let score = 140; score <= 190; score += 10) {
+    svg += `
+      <line x1="${left}" y1="${y(score)}" x2="${width-right}" y2="${y(score)}"
+        stroke="#DCE6F2" stroke-width="1"/>
+      <text x="${left-12}" y="${y(score)+5}" text-anchor="end"
+        fill="#52657A" font-size="14">${score}</text>
+    `;
+  }
+
+  svg += `<polyline points="${points}" fill="none"
+    stroke="#1976D2" stroke-width="3" stroke-linejoin="round"/>`;
+
+  examAverageData.forEach((d, i) => {
+    svg += `
+      <circle cx="${x(i)}" cy="${y(d.total)}" r="5" fill="#1976D2"/>
+      <text x="${x(i)}" y="${y(d.total)-11}" text-anchor="middle"
+        font-size="12" fill="#164A8A">${d.total}</text>
+      <text x="${x(i)}" y="${height-20}" text-anchor="middle"
+        font-size="12" fill="#52657A">${d.year}</text>
+    `;
+  });
+
+  svg += "</svg>";
+
+  area.innerHTML = `
+    <div style="background:#F3F8FF;padding:18px;border-radius:12px;margin:20px 0;">
+      <h3 style="text-align:center;color:#164A8A;">5教科合計の平均点推移</h3>
+      ${svg}
+    </div>
+  `;
 }
 // 学校名で検索する機能
     let selectedSchoolType = "すべて";
