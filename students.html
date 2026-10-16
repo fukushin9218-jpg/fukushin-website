@@ -324,7 +324,7 @@ function colorSchoolNames(text, color) {
     const nameColor = isKosen ? "#E67E22" : color;
 
     return `<strong style="color:${nameColor};">${schoolName}</strong>${course}`;
-  }).join(" ／ ");
+  }).join("<br>");
 }
   for (let score = 70; score >= 37; score--) {
     html += `
