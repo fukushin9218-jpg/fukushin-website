@@ -162,7 +162,19 @@
 </div>
 
   <h2>🏫 高校検索・学校情報</h2>
-  <p>公立高校・私立高校・高専の情報を掲載します。</p>
+<p>学校名を入力すると、該当する高校を探せます。</p>
+
+<div class="school-search">
+  <input
+    type="search"
+    id="schoolKeyword"
+    placeholder="🔍 学校名を入力（例：春日・筑紫）"
+    oninput="searchSchools()"
+  >
+  <div id="schoolResults">
+    <p>ここに学校一覧が表示されます。</p>
+  </div>
+</div>
 
   <h2>📊 フクト偏差値一覧</h2>
   <p>資料画像を掲載予定です。</p>
@@ -180,6 +192,54 @@
       message.textContent = "ユーザー名またはパスワードが違います。";
     }
   }
+    // 学校情報（まずは動作確認用の3校）
+const schools = [
+  {
+    name: "筑紫丘",
+    type: "公立",
+    score: "F68・70",
+    url: "https://chikushigaoka.fku.ed.jp/"
+  },
+  {
+    name: "春日",
+    type: "公立",
+    score: "F63",
+    url: "https://kasuga.fku.ed.jp/"
+  },
+  {
+    name: "筑紫中央",
+    type: "公立",
+    score: "F60",
+    url: "https://chikushichuo.fku.ed.jp/"
+  }
+];
+
+// 学校名で検索する機能
+function searchSchools() {
+  const input = document.getElementById("schoolKeyword");
+  const results = document.getElementById("schoolResults");
+
+  if (!input || !results) return;
+
+  const keyword = input.value.trim();
+  const filtered = schools.filter(school =>
+    school.name.includes(keyword)
+  );
+
+  if (filtered.length === 0) {
+    results.innerHTML = "<p>該当する学校がありません。</p>";
+    return;
+  }
+
+  results.innerHTML = filtered.map(school => `
+    <div style="padding:15px; border-bottom:1px solid #ddd; text-align:left;">
+      <a href="${school.url}" target="_blank" rel="noopener noreferrer">
+        ${school.name}
+      </a>
+      <span>（${school.type}・${school.score}）</span>
+    </div>
+  `).join("");
+}
 </script>
 
 </body>
