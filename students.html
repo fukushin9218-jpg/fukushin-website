@@ -272,13 +272,26 @@ function showFscoreTable() {
         </thead>
         <tbody>
   `;
-
+// Fスコア別の学校情報（令和8年6月更新）
+const fscoreData = {
+  70: { public: "筑紫丘（理数）", private: "福大付属大濠（スーパー進学）" },
+  69: { public: "", private: "九産大付属九州（スーパー特進）" },
+  68: { public: "筑紫丘（普通）", private: "" },
+  67: { public: "", private: "東福岡（医進・サイエンス）／九産大付属九州産業（スーパー特進）／筑陽学園（特進S選抜）" },
+  66: { public: "久留米高専（情報科学科）", private: "筑紫女学園（医進）／城東（Ⅰ類特別選抜）" },
+  65: { public: "久留米高専（生物応用化学・電気電子工学）／城南（理数）", private: "西南学院（普通）／中村学園（アカデミックA）" },
+  64: { public: "久留米高専（機械工学）", private: "" },
+  63: { public: "久留米高専（材料システム工学）／春日（普通）", private: "福大付属大濠（進学）／九産大付属九州（特別進学）／東福岡（国際教養）／筑紫女学園（Ⅰ類）" },
+  62: { public: "", private: "九産大付属九州産業（特進）／筑陽学園（特別進学S）" },
+  61: { public: "北九州高専（生産デザイン工学）", private: "福大付属若葉（スーパー特進）／城東（Ⅰ類）" },
+  60: { public: "有明高専（創造工学）／筑紫中央（普通）", private: "東福岡（文理共創）" }
+};
   for (let score = 70; score >= 37; score--) {
     html += `
       <tr>
-        <td style="padding:12px; border:1px solid #ddd;"></td>
-        <td style="padding:12px; border:1px solid #ddd; text-align:center; font-weight:bold;">${score}</td>
-        <td style="padding:12px; border:1px solid #ddd;"></td>
+        <td style="padding:12px; border:1px solid #ddd; text-align:left;">${fscoreData[score]?.public || ""}</td>
+<td style="padding:12px; border:1px solid #ddd; text-align:center; font-weight:bold;">${score}</td>
+<td style="padding:12px; border:1px solid #ddd; text-align:left;">${fscoreData[score]?.private || ""}</td>
       </tr>
     `;
   }
