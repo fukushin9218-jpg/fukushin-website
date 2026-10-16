@@ -312,7 +312,7 @@ const fscoreData = {
   for (let score = 70; score >= 37; score--) {
     html += `
       <tr>
-        <td style="padding:12px; border:1px solid #ddd; text-align:left;">${fscoreData[score]?.public || ""}</td>
+        <td style="padding:12px; border:1px solid #ddd; text-align:left;">${(fscoreData[score]?.public || "").replace(/(久留米高専|北九州高専|有明高専)/g, '<strong style="color:#E67E22;">$1</strong>')}</td>
 <td style="padding:12px; border:1px solid #ddd; text-align:center; font-weight:bold;">${score}</td>
 <td style="padding:12px; border:1px solid #ddd; text-align:left;">${fscoreData[score]?.private || ""}</td>
       </tr>
