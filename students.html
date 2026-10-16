@@ -259,6 +259,14 @@ const schools = [
 function filterSchools(type) {
   selectedSchoolType = type;
   searchSchools();
+
+  document.querySelectorAll('.school-search button').forEach(button => {
+    const isSelected = button.textContent.trim() === type;
+
+    button.style.backgroundColor = isSelected ? '#19569B' : '#EAF3FF';
+    button.style.color = isSelected ? '#FFFFFF' : '#19569B';
+    button.style.border = isSelected ? '2px solid #19569B' : '2px solid #C5DDF5';
+  });
 }
 function searchSchools() {
   const input = document.getElementById("schoolKeyword");
