@@ -49,6 +49,21 @@
       cursor: pointer;
     }
     button:hover { background: #2875bd; }
+    /* 平均点グラフの切り替えボタン */
+.average-buttons button {
+  width: auto;
+  margin: 0;
+  padding: 10px 18px;
+  font-size: 15px;
+  border-radius: 25px;
+  background: #EAF3FF;
+  color: #19569B;
+  border: 2px solid #C5DDF5;
+}
+
+.average-buttons button:hover {
+  background: #D5E9FF;
+}
     #message { color: #d63355; }
     /* 入試日程のカード */
 .exam-grid {
@@ -195,7 +210,7 @@
 
   <h2>📈 福岡県公立高校入試・平均点の推移</h2>
 <p>平成21年度〜令和8年度｜5教科・各60点満点（合計300点）</p>
-<div style="display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:20px 0;">
+<div class="average-buttons" style="display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:20px 0;">
   <button onclick="showExamAverageChart('total')">5教科合計</button>
   <button onclick="showExamAverageChart('japanese')">国語</button>
   <button onclick="showExamAverageChart('math')">数学</button>
