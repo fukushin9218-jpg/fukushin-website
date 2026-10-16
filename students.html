@@ -50,6 +50,55 @@
     }
     button:hover { background: #2875bd; }
     #message { color: #d63355; }
+    /* 入試日程のカード */
+.exam-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 30px 0 45px;
+  text-align: left;
+}
+
+.exam-card {
+  background: #eef6ff;
+  border: 1px solid #d4e7fa;
+  border-radius: 16px;
+  padding: 24px 18px;
+}
+
+.exam-card:nth-child(2) {
+  background: #edf9f2;
+  border-color: #d1eadb;
+}
+
+.exam-card:nth-child(3) {
+  background: #fff5e9;
+  border-color: #f4dfc5;
+}
+
+.exam-card h3 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 21px;
+}
+
+.exam-card p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 12px 0;
+}
+
+/* スマートフォン用 */
+@media (max-width: 800px) {
+  .exam-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .login-box {
+    margin: 25px 12px;
+    padding: 25px 16px;
+  }
+}
   </style>
 </head>
 <body>
@@ -90,13 +139,27 @@
   <p>福岡進学塾 塾生専用ページへようこそ！</p>
 
   <h2>📅 令和9年度 入試日程</h2>
-  <p>私立専願：1月26日</p>
-  <p>私立前期：2月12日</p>
-  <p>私立後期：2月20日</p>
-  <p>公立推薦・特色化選抜：2月2日・3日</p>
-  <p>公立一般：3月9日</p>
-  <p>公立補充：3月25日</p>
-  <p>高専一般：2月14日</p>
+
+<div class="exam-grid">
+  <div class="exam-card">
+    <h3>🏫 私立高校</h3>
+    <p>専願入試：1月26日</p>
+    <p>前期入試：2月12日</p>
+    <p>後期入試：2月20日</p>
+  </div>
+
+  <div class="exam-card">
+    <h3>📘 公立高校</h3>
+    <p>推薦・特色化選抜：2月2日・3日</p>
+    <p>一般入試：3月9日</p>
+    <p>補充募集：3月25日</p>
+  </div>
+
+  <div class="exam-card">
+    <h3>🎓 高専</h3>
+    <p>一般入試：2月14日</p>
+  </div>
+</div>
 
   <h2>🏫 高校検索・学校情報</h2>
   <p>公立高校・私立高校・高専の情報を掲載します。</p>
