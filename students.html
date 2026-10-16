@@ -195,7 +195,14 @@
 
   <h2>📈 福岡県公立高校入試・平均点の推移</h2>
 <p>平成21年度〜令和8年度｜5教科・各60点満点（合計300点）</p>
-
+<div style="display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:20px 0;">
+  <button onclick="showExamAverageChart('total')">5教科合計</button>
+  <button onclick="showExamAverageChart('japanese')">国語</button>
+  <button onclick="showExamAverageChart('math')">数学</button>
+  <button onclick="showExamAverageChart('social')">社会</button>
+  <button onclick="showExamAverageChart('science')">理科</button>
+  <button onclick="showExamAverageChart('english')">英語</button>
+</div>
 <div id="examAverageChart"></div>
 <div id="examAverageTable"></div>
 
@@ -383,7 +390,7 @@ function colorSchoolNames(text, color) {
   { year:"R7", japanese:37, math:28, social:34, science:29, english:31, total:159 },
   { year:"R8", japanese:43, math:31, social:32, science:31, english:31, total:168 }
 ];
-    function showExamAverageChart() {
+    function showExamAverageChart(subject = "total") {
   const area = document.getElementById("examAverageChart");
   if (!area) return;
 
@@ -394,21 +401,21 @@ function colorSchoolNames(text, color) {
   const top = 35;
   const bottom = 55;
 
-  const minScore = 140;
-  const maxScore = 190;
+  const minScore = subject === "total" ? 140 : 20;
+const maxScore = subject === "total" ? 190 : 50;
 
   const x = i => left + i * (width - left - right) / (examAverageData.length - 1);
   const y = score => top + (maxScore - score) * (height - top - bottom) / (maxScore - minScore);
 
   const points = examAverageData
-    .map((d, i) => `${x(i)},${y(d.total)}`)
+    .map((d, i) => `${x(i)},${y(d[subject])}`)
     .join(" ");
 
   let svg = `<svg viewBox="0 0 ${width} ${height}"
     style="width:100%;height:auto;display:block;"
     role="img" aria-label="公立高校入試の5教科合計平均点の推移">`;
 
-  for (let score = 140; score <= 190; score += 10) {
+  for (let score = minScore; score <= maxScore; score += 10) {
     svg += `
       <line x1="${left}" y1="${y(score)}" x2="${width-right}" y2="${y(score)}"
         stroke="#DCE6F2" stroke-width="1"/>
@@ -422,9 +429,9 @@ function colorSchoolNames(text, color) {
 
   examAverageData.forEach((d, i) => {
     svg += `
-      <circle cx="${x(i)}" cy="${y(d.total)}" r="5" fill="#1976D2"/>
-      <text x="${x(i)}" y="${y(d.total)-11}" text-anchor="middle"
-        font-size="12" fill="#164A8A">${d.total}</text>
+      <circle cx="${x(i)}" cy="${y(d[subject])}" r="5" fill="#1976D2"/>
+<text x="${x(i)}" y="${y(d[subject])-11}" text-anchor="middle"
+  font-size="12" fill="#164A8A">${d[subject]}</text>
       <text x="${x(i)}" y="${height-20}" text-anchor="middle"
         font-size="12" fill="#52657A">${d.year}</text>
     `;
@@ -434,7 +441,13 @@ function colorSchoolNames(text, color) {
 
   area.innerHTML = `
     <div style="background:#F3F8FF;padding:18px;border-radius:12px;margin:20px 0;">
-      <h3 style="text-align:center;color:#164A8A;">5教科合計の平均点推移</h3>
+      <h3 style="text-align:center;color:#164A8A;">${subject === "total" ? "5教科合計" : {
+  japanese: "国語",
+  math: "数学",
+  social: "社会",
+  science: "理科",
+  english: "英語"
+}[subject]}の平均点推移</h3>
       ${svg}
     </div>
   `;
