@@ -249,15 +249,20 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
   <p>校舎を選択すると、入塾金・年間教材費・月別授業料をご確認いただけます。</p>
 
   <div style="display:flex; gap:12px; margin:24px 0; flex-wrap:wrap;">
-    <button type="button" id="fee-kasuga" onclick="switchGroupFees('kasuga')"
-      style="flex:1; min-width:130px; padding:17px; border:0; border-radius:12px; background:#1767b2; color:white; font-size:17px; font-weight:bold; cursor:pointer;">
-      🏫 春日校
-    </button>
-    <button type="button" id="fee-nakagawa" onclick="switchGroupFees('nakagawa')"
-      style="flex:1; min-width:130px; padding:17px; border:2px solid #1767b2; border-radius:12px; background:white; color:#1767b2; font-size:17px; font-weight:bold; cursor:pointer;">
-      🏫 那珂川校
-    </button>
-  </div>
+
+  <button type="button" id="fee-nakagawa"
+    onclick="switchGroupFees('nakagawa')"
+    style="flex:1; min-width:130px; padding:17px; border:2px solid #35a66a; border-radius:12px; background:#35a66a; color:white; font-size:17px; font-weight:bold; cursor:pointer;">
+    🏫 那珂川校
+  </button>
+
+  <button type="button" id="fee-kasuga"
+    onclick="switchGroupFees('kasuga')"
+    style="flex:1; min-width:130px; padding:17px; border:2px solid #399de0; border-radius:12px; background:white; color:#399de0; font-size:17px; font-weight:bold; cursor:pointer;">
+    🏫 春日校
+  </button>
+
+</div>
 
   <h3 id="fee-school-title" style="color:#1767b2; font-size:22px;">春日校の料金案内</h3>
 
@@ -366,9 +371,11 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
     ["kasuga","nakagawa"].forEach(function (key) {
       const button = document.getElementById("fee-" + key);
       const active = key === school;
-      button.style.background = active ? "#1767b2" : "white";
-      button.style.color = active ? "white" : "#1767b2";
-      button.style.border = active ? "2px solid #1767b2" : "2px solid #1767b2";
+      const color = key === "nakagawa" ? "#35a66a" : "#399de0";
+
+button.style.background = active ? color : "white";
+button.style.color = active ? "white" : color;
+button.style.border = "2px solid " + color;
     });
 
     document.getElementById("group-materials").innerHTML =
