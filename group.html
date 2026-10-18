@@ -20,6 +20,51 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
  .page-title h1 { font-size: 28px; }
  .content { padding: 24px; }
 }
+ /* 集団クラス 詳細ページ */
+.group-section {
+  margin: 35px 0;
+}
+
+.group-section h2 {
+  color: #1767b2;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.group-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.group-card {
+  background: #eef6ff;
+  border: 1px solid #cfe4ff;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.group-card h3 {
+  color: #1767b2;
+  font-size: 19px;
+  margin: 0 0 12px;
+}
+
+.group-card p {
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+
+@media (max-width: 650px) {
+  .group-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .group-card {
+    padding: 20px;
+  }
+}
 </style>
 <script src="menu.js" defer></script>
 </head>
