@@ -267,13 +267,13 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
   <h3 id="fee-school-title" style="color:#35a66a; font-size:22px;">那珂川校の料金案内</h3>
 
   <div id="group-materials-box" style="background:#eefaf2; border:1px solid #bce8cc; border-radius:15px; padding:22px; margin:20px 0 30px;">
-    <h3 style="color:#1767b2; margin-top:0;">📘 入塾金・年間教材費</h3>
+    <h3 id="group-materials-header" style="color:#1767b2; margin-top:0;">📘 入塾金・年間教材費</h3>
     <p><strong>入塾金：11,000円（税込）</strong></p>
 
     <div style="overflow-x:auto;">
       <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
         <thead>
-          <tr id="group-materials-header" style="background:#35a66a; color:white;">
+          <tr id="group-materials-table-header" style="background:#35a66a; color:white;">
             <th style="padding:12px; border:1px solid #cfe4ff;">学年・コース</th>
             <th style="padding:12px; border:1px solid #cfe4ff;">年間教材費</th>
           </tr>
@@ -365,6 +365,8 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
   }
 
   window.switchGroupFees = function (school) {
+   document.getElementById("group-materials-header").style.color =
+  school === "nakagawa" ? "#35a66a" : "#399de0";
    document.getElementById("group-materials-header").style.background =
   school === "nakagawa" ? "#35a66a" : "#399de0";
    const materialsBox = document.getElementById("group-materials-box");
