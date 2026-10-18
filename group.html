@@ -243,144 +243,167 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
     ※定期考査前・季節講習期間中などは、授業曜日や時間が変更になる場合があります。
   </p>
 </section>
-   <section class="group-section">
+   
+<section class="group-section" id="group-fees">
   <h2>💰 2026年度 授業料のご案内</h2>
+  <p>校舎を選択すると、入塾金・年間教材費・月別授業料をご確認いただけます。</p>
 
-  <p>
-    小学生・中学生の通常月の授業料をご案内します。
-    校舎によって一部料金が異なります。
-  </p>
+  <div style="display:flex; gap:12px; margin:24px 0; flex-wrap:wrap;">
+    <button type="button" id="fee-kasuga" onclick="switchGroupFees('kasuga')"
+      style="flex:1; min-width:130px; padding:17px; border:0; border-radius:12px; background:#1767b2; color:white; font-size:17px; font-weight:bold; cursor:pointer;">
+      🏫 春日校
+    </button>
+    <button type="button" id="fee-nakagawa" onclick="switchGroupFees('nakagawa')"
+      style="flex:1; min-width:130px; padding:17px; border:2px solid #1767b2; border-radius:12px; background:white; color:#1767b2; font-size:17px; font-weight:bold; cursor:pointer;">
+      🏫 那珂川校
+    </button>
+  </div>
 
-  <div style="overflow-x:auto; margin-top:20px;">
+  <h3 id="fee-school-title" style="color:#1767b2; font-size:22px;">春日校の料金案内</h3>
 
-    <table style="width:100%; min-width:520px; border-collapse:collapse; text-align:center; font-size:15px;">
+  <div style="background:#eef6ff; border:1px solid #cfe4ff; border-radius:15px; padding:22px; margin:20px 0 30px;">
+    <h3 style="color:#1767b2; margin-top:0;">📘 入塾金・年間教材費</h3>
+    <p><strong>入塾金：11,000円（税込）</strong></p>
 
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
+        <thead>
+          <tr style="background:#1767b2; color:white;">
+            <th style="padding:12px; border:1px solid #cfe4ff;">学年・コース</th>
+            <th style="padding:12px; border:1px solid #cfe4ff;">年間教材費</th>
+          </tr>
+        </thead>
+        <tbody id="group-materials"></tbody>
+      </table>
+    </div>
+    <p style="font-size:13px; margin-bottom:0;">※入塾時期により教材費のお支払い方法が異なります。</p>
+  </div>
+
+  <h3 style="color:#1767b2; font-size:22px;">📅 月別授業料（4月〜翌3月）</h3>
+  <p style="font-size:14px;">金額は税込みです。カッコ内は弟妹割引適用後の金額です。</p>
+
+  <div style="overflow-x:auto;">
+    <table style="width:100%; min-width:690px; border-collapse:collapse; text-align:center; font-size:14px;">
       <thead>
         <tr style="background:#1767b2; color:white;">
-          <th style="padding:16px 10px; border:1px solid #cfe4ff;">
-            学年・コース
-          </th>
-          <th style="padding:16px 10px; border:1px solid #cfe4ff;">
-            春日校
-          </th>
-          <th style="padding:16px 10px; border:1px solid #cfe4ff;">
-            那珂川校
-          </th>
+          <th style="padding:12px 8px; border:1px solid #cfe4ff;">月</th>
+          <th style="padding:12px 8px; border:1px solid #cfe4ff;">中3</th>
+          <th style="padding:12px 8px; border:1px solid #cfe4ff;">中2</th>
+          <th style="padding:12px 8px; border:1px solid #cfe4ff;">中1</th>
+          <th style="padding:12px 8px; border:1px solid #cfe4ff;">小学生<br>国・算</th>
+          <th style="padding:12px 8px; border:1px solid #cfe4ff;">小学生<br>英語</th>
+          <th style="padding:12px 8px; border:1px solid #cfe4ff;">小学生<br>3科目</th>
         </tr>
       </thead>
-
-      <tbody>
-
-        <tr style="background:#eef6ff;">
-          <td style="padding:15px 10px; border:1px solid #cfe4ff; font-weight:bold;">
-            中学3年生
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            22,000円
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            22,000円
-          </td>
-        </tr>
-
-        <tr style="background:white;">
-          <td style="padding:15px 10px; border:1px solid #cfe4ff; font-weight:bold;">
-            中学2年生
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            17,400円
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            22,000円
-          </td>
-        </tr>
-
-        <tr style="background:#eef6ff;">
-          <td style="padding:15px 10px; border:1px solid #cfe4ff; font-weight:bold;">
-            中学1年生
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            17,400円
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            19,800円
-          </td>
-        </tr>
-
-        <tr style="background:white;">
-          <td style="padding:15px 10px; border:1px solid #cfe4ff; font-weight:bold;">
-            小学生 国語・算数
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            7,600円
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            7,600円
-          </td>
-        </tr>
-
-        <tr style="background:#eef6ff;">
-          <td style="padding:15px 10px; border:1px solid #cfe4ff; font-weight:bold;">
-            小学生 英語
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            7,500円
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            7,500円
-          </td>
-        </tr>
-
-        <tr style="background:white;">
-          <td style="padding:15px 10px; border:1px solid #cfe4ff; font-weight:bold;">
-            小学生 国語・算数・英語
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            14,600円
-          </td>
-          <td style="padding:15px 10px; border:1px solid #cfe4ff;">
-            14,600円
-          </td>
-        </tr>
-
-      </tbody>
+      <tbody id="group-monthly-fees"></tbody>
     </table>
-
   </div>
 
   <div style="background:#eef6ff; border:1px solid #cfe4ff; border-radius:14px; padding:22px; margin-top:24px;">
-
-    <h3 style="color:#1767b2; margin:0 0 14px;">
-      📌 授業料について
-    </h3>
-
-    <p style="font-size:15px; margin:8px 0;">
-      ● 料金はすべて税込みです。
-    </p>
-
-    <p style="font-size:15px; margin:8px 0;">
-      ● 表示金額は通常月の授業料です。
-    </p>
-
-    <p style="font-size:15px; margin:8px 0;">
-      ● 7月・8月は夏期講習、12月・1月は冬期講習の費用を含む料金となります。
-    </p>
-
-    <p style="font-size:15px; margin:8px 0;">
-      ● 中学生は6月からフクトを受験できます。受験料は別途必要です。
-    </p>
-
-    <p style="font-size:15px; margin:8px 0;">
-      ● 入塾金は11,000円です。
-    </p>
-
-    <p style="font-size:15px; margin:8px 0;">
-      ● 教材費などの詳細は各校舎へお問い合わせください。
-    </p>
-
+    <h3 style="color:#1767b2; margin-top:0;">📌 料金について</h3>
+    <p>● 料金はすべて税込みです。</p>
+    <p>● カッコ内は弟妹割引適用後の金額です。</p>
+    <p>● 7月・8月は夏期講習、12月・1月は冬期講習の費用を含む料金です。</p>
+    <p>● 中学生は6月からフクトを受験できます。受験料は別途必要です。</p>
+    <p>● 年間教材費は授業料とは別に必要です。</p>
+    <p>● 詳細は各校舎へお問い合わせください。</p>
   </div>
-
 </section>
+
+<script>
+(function () {
+  const materials = [
+    ["中学3年生", "28,000円"],
+    ["中学2年生", "20,000円"],
+    ["中学1年生", "20,000円"],
+    ["小学生 2科目（国語・算数）", "9,000円"],
+    ["小学生 英語のみ", "6,000円"],
+    ["小学生 3科目（国語・算数・英語）", "15,000円"]
+  ];
+
+  const months = ["4月","5月","6月","7月","8月","9月","10月","11月","12月","1月","2月","3月"];
+
+  // 各料金は「通常料金 / 弟妹割引後」の順です。
+  const fees = {
+    kasuga: [
+      [["22000","11000"],["17400","10000"],["17400","10000"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["22000","11000"],["17400","10000"],["17400","10000"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["22000","11000"],["17400","10000"],["17400","10000"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["36000","25200"],["27000","18900"],["25000","16000"],["15000","10500"],["7500",null],["20000","17000"]],
+      [["36000","25200"],["27000","18900"],["25000","16000"],["15000","10500"],["7500",null],["20000","17000"]],
+      [["32000","16000"],["17400","10000"],["17400","10000"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["32000","16000"],["17400","10000"],["17400","10000"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["40000","20000"],["17400","10000"],["17400","10000"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["50000","35000"],["27000","18900"],["25000","16000"],["15000","10500"],["7500",null],["20000","17000"]],
+      [["50000","35000"],["27000","18900"],["25000","16000"],["15000","10500"],["7500",null],["20000","17000"]],
+      [null,["17400","10000"],["17400","10000"],["7600","4000"],["7500",null],["14600","11000"]],
+      [null,["17400","10000"],["17400","10000"],["7600","4000"],["7500",null],["14600","11000"]]
+    ],
+    nakagawa: [
+      [["22000","11000"],["22000","11000"],["19800","13700"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["22000","11000"],["22000","11000"],["19800","13700"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["22000","11000"],["22000","11000"],["19800","13700"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["36000","25200"],["27000","18900"],["25000","18000"],["15000","10500"],["7500",null],["20000","17000"]],
+      [["36000","25200"],["27000","18900"],["25000","18000"],["15000","10500"],["7500",null],["20000","17000"]],
+      [["32000","16000"],["22000","11000"],["19800","13700"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["32000","16000"],["22000","11000"],["19800","13700"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["40000","20000"],["22000","11000"],["19800","13700"],["7600","4000"],["7500",null],["14600","11000"]],
+      [["50000","35000"],["27000","18900"],["25000","18000"],["15000","10500"],["7500",null],["20000","17000"]],
+      [["50000","35000"],["27000","18900"],["25000","18000"],["15000","10500"],["7500",null],["20000","17000"]],
+      [null,["22000","11000"],["19800","13700"],["7600","4000"],["7500",null],["14600","11000"]],
+      [null,["22000","11000"],["19800","13700"],["7600","4000"],["7500",null],["14600","11000"]]
+    ]
+  };
+
+  function money(value) {
+    return Number(value).toLocaleString("ja-JP") + "円";
+  }
+
+  window.switchGroupFees = function (school) {
+    document.getElementById("fee-school-title").textContent =
+      (school === "kasuga" ? "春日校" : "那珂川校") + "の料金案内";
+
+    ["kasuga","nakagawa"].forEach(function (key) {
+      const button = document.getElementById("fee-" + key);
+      const active = key === school;
+      button.style.background = active ? "#1767b2" : "white";
+      button.style.color = active ? "white" : "#1767b2";
+      button.style.border = active ? "2px solid #1767b2" : "2px solid #1767b2";
+    });
+
+    document.getElementById("group-materials").innerHTML =
+      materials.map(function (item, i) {
+        return '<tr style="background:' + (i % 2 ? 'white' : '#e5f1ff') + ';">' +
+          '<td style="padding:12px; border:1px solid #cfe4ff;">' + item[0] + '</td>' +
+          '<td style="padding:12px; border:1px solid #cfe4ff; font-weight:bold;">' + item[1] + '</td></tr>';
+      }).join("");
+
+    document.getElementById("group-monthly-fees").innerHTML =
+      fees[school].map(function (row, i) {
+        let html = '<tr style="background:' + (i % 2 ? 'white' : '#eef6ff') + ';">' +
+          '<th style="padding:12px 8px; border:1px solid #cfe4ff;">' + months[i] + '</th>';
+
+        row.forEach(function (amount, col) {
+          let content;
+          if (amount === null) {
+            content = '受験終了まで<br>無料';
+          } else {
+            content = money(amount[0]);
+            if (amount[1] !== null) {
+              content += '<br><span style="font-size:12px; color:#666;">(' +
+                money(amount[1]) + ')</span>';
+            }
+          }
+          html += '<td style="padding:12px 6px; border:1px solid #cfe4ff;">' + content + '</td>';
+        });
+        return html + '</tr>';
+      }).join("");
+  };
+
+  switchGroupFees("kasuga");
+})();
+</script>
+
     <a class="back" href="index.html#courses">← 学びのご案内に戻る</a>
   </div>
 </main>
