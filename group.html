@@ -273,7 +273,7 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
     <div style="overflow-x:auto;">
       <table style="width:100%; border-collapse:collapse; text-align:center; font-size:14px;">
         <thead>
-          <tr style="background:#1767b2; color:white;">
+          <tr id="group-materials-header" style="background:#35a66a; color:white;">
             <th style="padding:12px; border:1px solid #cfe4ff;">学年・コース</th>
             <th style="padding:12px; border:1px solid #cfe4ff;">年間教材費</th>
           </tr>
@@ -365,6 +365,8 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
   }
 
   window.switchGroupFees = function (school) {
+   document.getElementById("group-materials-header").style.background =
+  school === "nakagawa" ? "#35a66a" : "#399de0";
    const materialsBox = document.getElementById("group-materials-box");
 
 materialsBox.style.background =
