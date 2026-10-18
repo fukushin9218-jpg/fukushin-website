@@ -267,7 +267,7 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
   <h3 id="fee-school-title" style="color:#35a66a; font-size:22px;">那珂川校の料金案内</h3>
 
   <div id="group-materials-box" style="background:#eefaf2; border:1px solid #bce8cc; border-radius:15px; padding:22px; margin:20px 0 30px;">
-    <h3 id="group-materials-header" style="color:#1767b2; margin-top:0;">📘 入塾金・年間教材費</h3>
+    <h3 id="group-materials-header" style="color:#35a66a; margin-top:0;">📘 入塾金・年間教材費</h3>
     <p><strong>入塾金：11,000円（税込）</strong></p>
 
     <div style="overflow-x:auto;">
@@ -284,13 +284,13 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
     <p style="font-size:13px; margin-bottom:0;">※入塾時期により教材費のお支払い方法が異なります。</p>
   </div>
 
-  <h3 style="color:#1767b2; font-size:22px;">📅 月別授業料（4月〜翌3月）</h3>
+  <h3 id="group-monthly-header" style="color:#35a66a; font-size:22px;">📅 月別授業料（4月〜翌3月）</h3>
   <p style="font-size:14px;">金額は税込みです。カッコ内は弟妹割引適用後の金額です。</p>
 
   <div style="overflow-x:auto;">
     <table style="width:100%; min-width:690px; border-collapse:collapse; text-align:center; font-size:14px;">
       <thead>
-        <tr style="background:#1767b2; color:white;">
+        <tr id="group-monthly-table-header" style="background:#35a66a; color:white;">
           <th style="padding:12px 8px; border:1px solid #cfe4ff;">月</th>
           <th style="padding:12px 8px; border:1px solid #cfe4ff;">中3</th>
           <th style="padding:12px 8px; border:1px solid #cfe4ff;">中2</th>
@@ -304,8 +304,8 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
     </table>
   </div>
 
-  <div style="background:#eef6ff; border:1px solid #cfe4ff; border-radius:14px; padding:22px; margin-top:24px;">
-    <h3 style="color:#1767b2; margin-top:0;">📌 料金について</h3>
+  <div id="group-fees-note" style="background:#eefaf2; border:1px solid #bce8cc; border-radius:14px; padding:22px; margin-top:24px;">
+    <h3 id="group-fees-note-title" style="color:#35a66a; margin-top:0;">📌 料金について</h3>
     <p>● 料金はすべて税込みです。</p>
     <p>● カッコ内は弟妹割引適用後の金額です。</p>
     <p>● 7月・8月は夏期講習、12月・1月は冬期講習の費用を含む料金です。</p>
@@ -365,45 +365,51 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
   }
 
   window.switchGroupFees = function (school) {
-   document.getElementById("group-materials-header").style.color =
-  school === "nakagawa" ? "#35a66a" : "#399de0";
-   document.getElementById("group-materials-header").style.background =
-  school === "nakagawa" ? "#35a66a" : "#399de0";
-   const materialsBox = document.getElementById("group-materials-box");
+    const isNakagawa = school === "nakagawa";
+    const color = isNakagawa ? "#35a66a" : "#399de0";
+    const pale = isNakagawa ? "#eefaf2" : "#eef7ff";
+    const stripe = isNakagawa ? "#e6f6ec" : "#eaf5ff";
+    const border = isNakagawa ? "#bce8cc" : "#b8dcf5";
 
-materialsBox.style.background =
-  school === "nakagawa" ? "#eefaf2" : "#eef7ff";
-
-materialsBox.style.borderColor =
-  school === "nakagawa" ? "#bce8cc" : "#b8dcf5";
-   document.getElementById("fee-school-title").style.color =
-  school === "nakagawa" ? "#35a66a" : "#399de0";
+    document.getElementById("fee-school-title").style.color = color;
     document.getElementById("fee-school-title").textContent =
-      (school === "kasuga" ? "春日校" : "那珂川校") + "の料金案内";
+      (isNakagawa ? "那珂川校" : "春日校") + "の料金案内";
 
-    ["kasuga","nakagawa"].forEach(function (key) {
+    const materialsBox = document.getElementById("group-materials-box");
+    materialsBox.style.background = pale;
+    materialsBox.style.borderColor = border;
+    document.getElementById("group-materials-header").style.color = color;
+    document.getElementById("group-materials-table-header").style.background = color;
+    document.getElementById("group-monthly-header").style.color = color;
+    document.getElementById("group-monthly-table-header").style.background = color;
+
+    const note = document.getElementById("group-fees-note");
+    note.style.background = pale;
+    note.style.borderColor = border;
+    document.getElementById("group-fees-note-title").style.color = color;
+
+    ["nakagawa", "kasuga"].forEach(function (key) {
       const button = document.getElementById("fee-" + key);
       const active = key === school;
-      const color = key === "nakagawa" ? "#35a66a" : "#399de0";
-
-button.style.background = active ? color : "white";
-button.style.color = active ? "white" : color;
-button.style.border = "2px solid " + color;
+      const buttonColor = key === "nakagawa" ? "#35a66a" : "#399de0";
+      button.style.background = active ? buttonColor : "white";
+      button.style.color = active ? "white" : buttonColor;
+      button.style.border = "2px solid " + buttonColor;
     });
 
     document.getElementById("group-materials").innerHTML =
       materials.map(function (item, i) {
-        return '<tr style="background:' + (i % 2 ? 'white' : '#e5f1ff') + ';">' +
-          '<td style="padding:12px; border:1px solid #cfe4ff;">' + item[0] + '</td>' +
-          '<td style="padding:12px; border:1px solid #cfe4ff; font-weight:bold;">' + item[1] + '</td></tr>';
+        return '<tr style="background:' + (i % 2 ? 'white' : stripe) + ';">' +
+          '<td style="padding:12px; border:1px solid ' + border + ';">' + item[0] + '</td>' +
+          '<td style="padding:12px; border:1px solid ' + border + '; font-weight:bold;">' + item[1] + '</td></tr>';
       }).join("");
 
     document.getElementById("group-monthly-fees").innerHTML =
       fees[school].map(function (row, i) {
-        let html = '<tr style="background:' + (i % 2 ? 'white' : '#eef6ff') + ';">' +
-          '<th style="padding:12px 8px; border:1px solid #cfe4ff;">' + months[i] + '</th>';
+        let html = '<tr style="background:' + (i % 2 ? 'white' : stripe) + ';">' +
+          '<th style="padding:12px 8px; border:1px solid ' + border + ';">' + months[i] + '</th>';
 
-        row.forEach(function (amount, col) {
+        row.forEach(function (amount) {
           let content;
           if (amount === null) {
             content = '受験終了まで<br>無料';
@@ -414,7 +420,7 @@ button.style.border = "2px solid " + color;
                 money(amount[1]) + ')</span>';
             }
           }
-          html += '<td style="padding:12px 6px; border:1px solid #cfe4ff;">' + content + '</td>';
+          html += '<td style="padding:12px 6px; border:1px solid ' + border + ';">' + content + '</td>';
         });
         return html + '</tr>';
       }).join("");
