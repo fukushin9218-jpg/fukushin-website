@@ -266,7 +266,7 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
 
   <h3 id="fee-school-title" style="color:#35a66a; font-size:22px;">那珂川校の料金案内</h3>
 
-  <div style="background:#eef6ff; border:1px solid #cfe4ff; border-radius:15px; padding:22px; margin:20px 0 30px;">
+  <div id="group-materials-box" style="background:#eefaf2; border:1px solid #bce8cc; border-radius:15px; padding:22px; margin:20px 0 30px;">
     <h3 style="color:#1767b2; margin-top:0;">📘 入塾金・年間教材費</h3>
     <p><strong>入塾金：11,000円（税込）</strong></p>
 
@@ -365,6 +365,13 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
   }
 
   window.switchGroupFees = function (school) {
+   const materialsBox = document.getElementById("group-materials-box");
+
+materialsBox.style.background =
+  school === "nakagawa" ? "#eefaf2" : "#eef7ff";
+
+materialsBox.style.borderColor =
+  school === "nakagawa" ? "#bce8cc" : "#b8dcf5";
    document.getElementById("fee-school-title").style.color =
   school === "nakagawa" ? "#35a66a" : "#399de0";
     document.getElementById("fee-school-title").textContent =
