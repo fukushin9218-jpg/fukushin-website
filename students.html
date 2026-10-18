@@ -141,6 +141,73 @@
     padding: 25px 16px;
   }
 }
+    /* 塾生専用ページ：固定ナビゲーション */
+.student-fixed-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 9999;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  padding: 10px 14px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  background: rgba(234, 243, 255, 0.97);
+  border-top: 2px solid #19569B;
+  box-shadow: 0 -3px 14px rgba(0, 40, 90, 0.12);
+}
+
+.student-fixed-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 4px;
+  box-sizing: border-box;
+  border-radius: 9px;
+  background: white;
+  color: #164C8B;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+
+.student-fixed-menu a:hover {
+  background: #19569B;
+  color: white;
+}
+
+/* ボタンで移動するときの動き */
+html {
+  scroll-behavior: smooth;
+}
+
+.login-box.logged-in {
+  padding-bottom: 110px;
+}
+
+/* スマートフォン用 */
+@media (max-width: 800px) {
+  .student-fixed-menu {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+    padding: 7px;
+    padding-bottom: max(7px, env(safe-area-inset-bottom));
+  }
+
+  .student-fixed-menu a {
+    min-height: 38px;
+    padding: 6px 2px;
+    font-size: 11px;
+  }
+
+  .login-box.logged-in {
+    padding-bottom: 150px;
+  }
+}
   </style>
 </head>
 <body>
@@ -180,7 +247,7 @@
   <h1>高校入試・進路情報</h1>
   <p>福岡進学塾 塾生専用ページへようこそ！</p>
 
-  <h2>📅 令和9年度 入試日程</h2>
+  <h2 id="section-schedule">🗓️ 令和9年度 入試日程</h2>
 
 <div class="exam-grid">
   <div class="exam-card">
@@ -203,7 +270,7 @@
   </div>
 </div>
 
-  <h2>🏫 高校検索・学校情報</h2>
+  <h2 id="section-search">🏫 高校検索・学校情報</h2>
 <p>学校名を入力すると、該当する高校を探せます。</p>
 
 <div class="school-search">
@@ -224,7 +291,7 @@
   </div>
 </div>
 
-  <h2>📊 フクトB判定 Fスコア一覧</h2>
+  <h2 id="section-fscore">📊 フクトB判定 Fスコア一覧</h2>
 
 <p style="background:#F0F7FF; padding:15px; border-radius:10px; text-align:left; line-height:1.8;">
   📘 <strong>Fスコアについて</strong><br>
@@ -235,7 +302,7 @@
 <p>令和8年6月更新｜福岡進学塾</p>
 <div id="fscoreTable"></div>
 
-  <h2>📈 福岡県公立高校入試・平均点の推移</h2>
+  <h2 id="section-average">📈 福岡県公立高校入試・平均点の推移</h2>
 <p>平成21年度〜令和8年度｜5教科・各60点満点（合計300点）</p>
 <div class="average-buttons" style="display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:20px 0;">
   <button onclick="showExamAverageChart('total')">5教科合計</button>
@@ -248,7 +315,7 @@
 <div id="examAverageChart"></div>
 <div id="examAverageTable"></div>
 
-  <h2>📋 令和9年度 推薦入学・特色化選抜 実施校一覧</h2>
+  <h2 id="section-recommend">📋 令和9年度 推薦入学・特色化選抜 実施校一覧</h2>
 <p>福岡県内の公立高校｜推薦・特色化選抜の実施校</p>
 
 <div style="background:#EAF3FF; padding:18px; border-radius:12px; margin:12px 0;">
@@ -273,7 +340,7 @@
 </p>
 
   
-<h2>📖 はじめての高校入試ガイド</h2>
+<h2 id="section-guide">📖 はじめての高校入試ガイド</h2>
 <p>福岡県の公立・私立・高専の入試の仕組みを、保護者の方にもわかりやすく解説します。</p>
 
 <!-- 公立高校 -->
@@ -440,7 +507,14 @@
 <p style="font-size:12px; color:#666;">
   ※このガイドは制度の概要です。正式な出願条件・選考方法・加重配点は令和9年度の各学校の募集要項をご確認ください。
 </p>
-
+<nav class="student-fixed-menu" aria-label="塾生専用ページ内メニュー">
+  <a href="#section-schedule">📅 入試日程</a>
+  <a href="#section-search">🏫 高校検索</a>
+  <a href="#section-fscore">📊 偏差値表</a>
+  <a href="#section-average">📈 平均点</a>
+  <a href="#section-recommend">📋 推薦・特色</a>
+  <a href="#section-guide">📖 入試ガイド</a>
+</nav>
 `;
       filterSchools("すべて");
       showFscoreTable();
