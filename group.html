@@ -264,7 +264,7 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
 
 </div>
 
-  <h3 id="fee-school-title" style="color:#1767b2; font-size:22px;">春日校の料金案内</h3>
+  <h3 id="fee-school-title" style="color:#35a66a; font-size:22px;">那珂川校の料金案内</h3>
 
   <div style="background:#eef6ff; border:1px solid #cfe4ff; border-radius:15px; padding:22px; margin:20px 0 30px;">
     <h3 style="color:#1767b2; margin-top:0;">📘 入塾金・年間教材費</h3>
@@ -365,6 +365,8 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
   }
 
   window.switchGroupFees = function (school) {
+   document.getElementById("fee-school-title").style.color =
+  school === "nakagawa" ? "#35a66a" : "#399de0";
     document.getElementById("fee-school-title").textContent =
       (school === "kasuga" ? "春日校" : "那珂川校") + "の料金案内";
 
