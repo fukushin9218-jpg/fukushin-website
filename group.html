@@ -69,6 +69,31 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
     padding: 20px;
   }
 }
+
+/* オンライン英語の追加案内 */
+.group-english-option { background:#eaf8ff; border:1px solid #a9d9f5; border-radius:16px; padding:22px; margin-top:20px; }
+.group-english-option-head { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.group-english-option h3 { color:#1767b2; margin:0; font-size:20px; }
+.group-english-option p { font-size:16px; line-height:1.85; margin:12px 0; }
+.group-yellow-label { display:inline-block; background:#ffdf64; color:#654600; font-size:13px; font-weight:bold; padding:7px 12px; border-radius:7px; }
+.group-english-link { display:inline-block; background:#fff; color:#1767b2; border:1px solid #80b8e8; border-radius:30px; padding:11px 18px; text-decoration:none; font-weight:bold; font-size:14px; }
+.group-english-link:hover { background:#dff0ff; }
+.group-elementary-link { display:block; text-align:center; margin-top:16px; }
+/* お問い合わせ：ホームページに合わせた案内 */
+.group-contact { margin:45px 0 15px; text-align:center; }
+.group-contact .group-contact-en { color:#69b6e9; letter-spacing:.25em; font-weight:bold; font-size:13px; }
+.group-contact h2 { color:#174f91; font-size:30px; border:0; margin:10px 0; padding:0; }
+.group-contact > p { font-size:16px; }
+.group-contact-guide { background:#eaf4ff; border:1px solid #c4defb; border-radius:18px; padding:25px; margin:24px 0; }
+.group-contact-guide h3 { color:#174f91; font-size:21px; margin:0 0 12px; }
+.group-contact-guide p { font-size:15px; margin:8px 0 14px; }
+.group-contact-items { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.group-contact-items div { background:white; border-radius:12px; padding:16px 8px; color:#174f91; font-weight:bold; }
+.group-contact-buttons { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.group-contact-buttons a { display:block; background:#06c755; border-radius:14px; padding:19px 12px; color:white; text-decoration:none; font-weight:bold; font-size:18px; }
+.group-contact-buttons a:hover { background:#05ad4b; }
+.group-contact-email { background:#1767b5; color:white; border-radius:14px; padding:18px 20px; font-size:18px; font-weight:bold; margin-top:18px; }
+@media(max-width:600px) { .group-contact-items { grid-template-columns:1fr; } .group-contact-buttons { grid-template-columns:1fr; gap:10px; } .group-contact h2 { font-size:25px; } .group-english-option { padding:18px; } }
 </style>
 <script src="menu.js" defer></script>
 </head>
@@ -163,6 +188,15 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
     </div>
 
   </div>
+  <div class="group-english-option">
+    <div class="group-english-option-head">
+      <h3>🌐 オンライン英語も受講できます！</h3>
+      <span class="group-yellow-label">★ オプション受講</span>
+    </div>
+    <p>中学生の集団クラスでは、通常の授業に加えてオンライン英語もオプションで受講できます。</p>
+    <p>英語をさらに学びたい生徒におすすめです。オンライン英語は塾の教室内で受講します。</p>
+    <a class="group-english-link" href="english.html">オンライン英語の詳細はこちら →</a>
+  </div>
 </section>
    <section class="group-section">
   <h2>🌱 小学生の集団クラス</h2>
@@ -185,12 +219,13 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
     </div>
 
     <div class="group-card">
-      <h3>🔤 英語の追加受講も可能</h3>
-      <p>
-        国語・算数に英語を追加して、
-        3科目を受講することもできます。
+      <h3>🔤 英語の追加受講・単独受講も可能</h3>
+      <span class="group-yellow-label">★ 英語のみの受講OK！</span>
+      <p style="margin-top:12px;">
+        国語・算数に英語を追加して3科目を受講することも、英語だけを単独で受講することもできます。
         中学校での英語学習に向けた準備にもつながります。
       </p>
+      <a class="group-english-link group-elementary-link" href="english.html">小学生英語の詳細はこちら →</a>
     </div>
 
     <div class="group-card">
@@ -430,7 +465,27 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
 })();
 </script>
 
-    <a class="back" href="index.html#courses">← 学びのご案内に戻る</a>
+    <section class="group-contact" id="group-contact">
+      <div class="group-contact-en">CONTACT</div>
+      <h2>無料体験・お問い合わせ</h2>
+      <p>集団クラスの無料体験や授業内容についてのご相談は、各校舎の公式LINEからお気軽にお問い合わせください。</p>
+      <div class="group-contact-guide">
+        <h3>💬 LINEでお問い合わせの方へ</h3>
+        <p>お問い合わせの際は、以下の3点をお知らせください。</p>
+        <div class="group-contact-items">
+          <div>① お子様のお名前</div>
+          <div>② 学校名</div>
+          <div>③ 学年</div>
+        </div>
+        <p>あわせて、お問い合わせ内容もお送りください。</p>
+      </div>
+      <div class="group-contact-buttons">
+        <a href="https://lin.ee/YxSbKMny" target="_blank" rel="noopener noreferrer">那珂川校　LINEでお問い合わせ →</a>
+        <a href="https://lin.ee/9uWutlR" target="_blank" rel="noopener noreferrer">春日校　LINEでお問い合わせ →</a>
+      </div>
+      <div class="group-contact-email">✉ メールでお問い合わせ<div style="font-size:14px; font-weight:normal; margin-top:5px;">那珂川校・春日校 共通</div></div>
+    </section>
+    <a class="back" href="index.html#course">← 学びのご案内に戻る</a>
   </div>
 </main>
 </body>
