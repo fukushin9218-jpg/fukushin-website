@@ -18,6 +18,10 @@ main { max-width: 1050px; margin: 55px auto; padding: 0 20px; }
 .back-wrap { text-align: center; margin-top: 28px; }
 .back-wrap .back { margin-top: 0; }
 .back { display: inline-block; margin-top: 35px; padding: 13px 28px; border-radius: 30px; background: #1767b2; color: white; text-decoration: none; font-weight: bold; }
+.back { box-shadow: 0 4px 12px rgba(0,0,0,.12); transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease; }
+.back:hover { transform: translateY(-6px); box-shadow: 0 10px 22px rgba(0,0,0,.20); background-color: #125a9d; }
+.back:focus-visible { outline: 3px solid #7fc5ff; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) { .back { transition: none; } }
 @media(max-width:600px) {
  .page-title h1 { font-size: 28px; }
  .content { padding: 24px; }
