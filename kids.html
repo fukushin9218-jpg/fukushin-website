@@ -107,6 +107,9 @@ body {
 .back:hover { transform: translateY(-5px); box-shadow: 0 10px 22px rgba(23,103,178,.28); }
 .back:focus-visible { outline: 3px solid #ffb347; outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) { .back { transition: none; } }
+/* LINEお問い合わせボタン：マウスを重ねると浮き上がる */
+.kids-line-button { transition: transform .3s ease, box-shadow .3s ease; box-shadow: 0 4px 12px rgba(0,0,0,.12); }
+.kids-line-button:hover { transform: translateY(-6px); box-shadow: 0 10px 22px rgba(0,0,0,.2); }
 </style>
 <script src="menu.js" defer></script>
 </head>
@@ -235,7 +238,7 @@ body {
       </p>
     </div>
 
-        <a href="https://lin.ee/YxSbKMny"
+        <a class="kids-line-button" href="https://lin.ee/YxSbKMny"
        target="_blank"
        rel="noopener noreferrer"
        style="display:block; max-width:460px; margin:20px auto 0; padding:18px 14px; background:#06c755; color:white; border-radius:14px; font-size:17px; font-weight:bold; text-decoration:none;">
