@@ -213,6 +213,18 @@ justify-content: flex-start;
   position: relative;
   transform: none;
 }
+
+/* 保護者の安心 */
+.support-section { background:#f1f8ff; }
+.support-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin:32px 0; text-align:center; }
+.support-card { background:white; border:1px solid #d3e8fa; border-radius:16px; padding:26px 16px; box-shadow:0 3px 12px rgba(24,94,154,.06); }
+.support-card .support-icon { font-size:30px; margin-bottom:10px; }
+.support-card h3 { color:#1767b5; font-size:19px; margin:0 0 10px; }
+.support-card p { margin:0; font-size:14px; line-height:1.8; }
+.support-more { display:inline-block; background:#1767b5; color:#fff; padding:15px 32px; border-radius:30px; font-weight:bold; text-decoration:none; box-shadow:0 5px 12px rgba(23,103,181,.18); transition:transform .25s,box-shadow .25s; }
+.support-more:hover { transform:translateY(-5px); box-shadow:0 9px 20px rgba(23,103,181,.25); }
+@media(max-width:700px){ .support-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } .support-card { padding:19px 10px; } .support-card h3 { font-size:16px; } .support-card p { font-size:13px; } }
+
   </style>
   <script src="menu.js" defer></script>
 </head>
@@ -432,6 +444,25 @@ onmouseout="this.style.transform=''; this.style.boxShadow=''">
 
 
 
+<!-- 保護者の安心：学びのご案内の直下 -->
+<div class="support-section">
+  <section class="section" id="support">
+    <div class="english">SUPPORT &amp; SAFETY</div>
+    <h2>保護者の安心</h2>
+    <p>お子さまの学びと成長を、安心のサポート体制で支えます。</p>
+    <div class="support-grid">
+      <div class="support-card"><div class="support-icon">👨‍🏫</div><h3>各科目専任講師</h3><p>それぞれの教科を担当する講師が、学習を丁寧にサポートします。</p></div>
+      <div class="support-card"><div class="support-icon">📖</div><h3>無料補習</h3><p>分からないところや苦手な単元の理解をサポートします。</p></div>
+      <div class="support-card"><div class="support-icon">📝</div><h3>定期テスト対策</h3><p>学校の試験範囲に合わせて、学習を進めます。</p></div>
+      <div class="support-card"><div class="support-icon">📩</div><h3>入退室メール通知</h3><p>入室・退室を保護者の方へメールでお知らせします。</p></div>
+      <div class="support-card"><div class="support-icon">💬</div><h3>塾LINE</h3><p>欠席の連絡や学習についてのご相談にも対応します。</p></div>
+      <div class="support-card"><div class="support-icon">🛡️</div><h3>塾保険</h3><p>万一のけがなどに備え、安心して通える環境を整えています。</p></div>
+    </div>
+    <a class="support-more" href="support.html">保護者の安心について詳しく見る →</a>
+  </section>
+</div>
+
+
 <div class="school">
   <section class="section" id="school">
     <div class="english">SCHOOL</div>
@@ -539,5 +570,19 @@ onmouseout="this.style.transform=''; this.style.boxShadow=''">
   © 福岡進学塾
 </footer>
 
+
+<script>
+/* 共通メニューが読み込まれた後、トップページに「保護者の安心」を追加 */
+document.addEventListener('DOMContentLoaded', function () {
+  const nav = document.querySelector('#common-header nav');
+  if (!nav || nav.querySelector('a[href="#support"]')) return;
+  const link = document.createElement('a');
+  link.href = '#support';
+  link.textContent = '保護者の安心';
+  const school = Array.from(nav.querySelectorAll('a')).find(a => a.textContent.trim().includes('校舎案内'));
+  if (school) nav.insertBefore(link, school);
+  else nav.appendChild(link);
+});
+</script>
 </body>
 </html>
