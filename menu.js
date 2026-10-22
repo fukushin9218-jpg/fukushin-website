@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <a href="index.html">ホーム</a>
       <a href="index.html#news">新着情報</a>
       <a href="index.html#course">学びのご案内</a>
+      <a href="index.html#support">保護者の安心</a>
       <a href="index.html#school">校舎案内</a>
       <a href="index.html#contact">お問い合わせ</a>
       <a href="students.html">塾生専用</a>
