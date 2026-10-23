@@ -34,7 +34,7 @@
 <hr class="line">
 <h2 class="section-title">お問い合わせ内容</h2>
 <div class="field"><fieldset><legend>① お問い合わせの内容 <span class="required">必須</span></legend><p class="help">当てはまる項目を選択してください（複数選択可）</p><div class="options" id="topics"><label class="option"><input type="checkbox" name="topic" value="無料体験のお申し込み">無料体験のお申し込み</label><label class="option"><input type="checkbox" name="topic" value="入塾について">入塾について</label><label class="option"><input type="checkbox" name="topic" value="英検・フクトについて">英検・フクトについて</label><label class="option"><input type="checkbox" name="topic" value="その他のお問い合わせ">その他のお問い合わせ</label></div><div id="topicError" class="error hidden">お問い合わせの内容を1つ以上選択してください。</div></fieldset></div>
-<div class="field"><fieldset><legend>② ご希望のコース <span class="optional">任意</span></legend><p class="help">以下のコースから選択してください（複数選択可）</p><div class="options"><label class="option"><input type="checkbox" name="course" value="集団クラス">集団クラス</label><label class="option"><input type="checkbox" name="course" value="個別指導">個別指導</label><label class="option"><input type="checkbox" name="course" value="キッズくらぶ">キッズくらぶ</label><label class="option"><input type="checkbox" name="course" value="そろばん">そろばん</label></div></fieldset></div>
+<div class="field"><fieldset><legend>② ご希望のコース <span class="required">必須</span></legend><p class="help">以下のコースから選択してください（複数選択可）</p><div class="options" id="courses"><label class="option"><input type="checkbox" name="course" value="集団クラス">集団クラス</label><label class="option"><input type="checkbox" name="course" value="個別指導">個別指導</label><label class="option"><input type="checkbox" name="course" value="キッズくらぶ">キッズくらぶ</label><label class="option"><input type="checkbox" name="course" value="そろばん">そろばん</label><label class="option"><input type="checkbox" name="course" value="該当なし（英検・フクトなど）">該当なし（英検・フクトなど）</label></div><div id="courseError" class="error hidden">ご希望のコースを1つ以上選択してください。</div></fieldset></div>
 <div class="field"><label for="message">お問い合わせ内容の詳細 <span class="required">必須</span></label><textarea id="message" name="message" required placeholder="ご質問やご希望などをご記入ください。"></textarea></div>
 <div class="actions"><button class="button" type="submit">入力内容を確認する →</button><p class="note">※この段階ではメールは送信されません。</p></div>
 </form>
@@ -52,10 +52,13 @@
   e.preventDefault();
   const valid=form.checkValidity();
   const topicValid=checked('topic').length>0;
+  const courseValid=checked('course').length>0;
+  document.getElementById('courseError').classList.toggle('hidden',courseValid);
   document.getElementById('topicError').classList.toggle('hidden',topicValid);
   if(!valid){form.reportValidity();return;}
   if(!topicValid){document.getElementById('topics').scrollIntoView({behavior:'smooth',block:'center'});return;}
-  const entries=[['お問い合わせ先の校舎',checked('campus').join('、')],['保護者のお名前',document.getElementById('parent').value],['お子様のお名前',document.getElementById('child').value],['お子様のお名前（ふりがな）',document.getElementById('furigana').value],['学校名',document.getElementById('school').value],['学年',document.getElementById('grade').value],['メールアドレス',document.getElementById('email').value],['電話番号',document.getElementById('phone').value||'未入力'],['お問い合わせの内容',checked('topic').join('、')],['ご希望のコース',checked('course').join('、')||'選択なし'],['お問い合わせ内容の詳細',document.getElementById('message').value]];
+  if(!courseValid){document.getElementById('courses').scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const entries=[['お問い合わせ先の校舎',checked('campus').join('、')],['保護者のお名前',document.getElementById('parent').value],['お子様のお名前',document.getElementById('child').value],['お子様のお名前（ふりがな）',document.getElementById('furigana').value],['学校名',document.getElementById('school').value],['学年',document.getElementById('grade').value],['メールアドレス',document.getElementById('email').value],['電話番号',document.getElementById('phone').value||'未入力'],['お問い合わせの内容',checked('topic').join('、')],['ご希望のコース',checked('course').join('、')],['お問い合わせ内容の詳細',document.getElementById('message').value]];
   document.getElementById('review').textContent=entries.map(([k,v])=>k+'\n'+v).join('\n\n');
   form.classList.add('hidden');confirmBox.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});
  });
