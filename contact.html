@@ -34,7 +34,7 @@
 <hr class="line">
 <h2 class="section-title">お問い合わせ内容</h2>
 <div class="field"><fieldset><legend>① お問い合わせの内容 <span class="required">必須</span></legend><p class="help">当てはまる項目を選択してください（複数選択可）</p><div class="options" id="topics"><label class="option"><input type="checkbox" name="topic" value="無料体験のお申し込み">無料体験のお申し込み</label><label class="option"><input type="checkbox" name="topic" value="入塾について">入塾について</label><label class="option"><input type="checkbox" name="topic" value="英検・フクトについて">英検・フクトについて</label><label class="option"><input type="checkbox" name="topic" value="その他のお問い合わせ">その他のお問い合わせ</label></div><div id="topicError" class="error hidden">お問い合わせの内容を1つ以上選択してください。</div></fieldset></div>
-<div class="field"><fieldset><legend>② ご希望のコース <span class="required">必須</span></legend><p class="help">以下のコースから選択してください（複数選択可）</p><div class="options" id="courses"><label class="option"><input type="checkbox" name="course" value="集団クラス">集団クラス</label><label class="option"><input type="checkbox" name="course" value="個別指導">個別指導</label><label class="option"><input type="checkbox" name="course" value="キッズくらぶ">キッズくらぶ</label><label class="option"><input type="checkbox" name="course" value="そろばん">そろばん</label><label class="option"><input type="checkbox" name="course" value="該当なし（英検・フクトなど）">該当なし（英検・フクトなど）</label></div><div id="courseError" class="error hidden">ご希望のコースを1つ以上選択してください。</div></fieldset></div>
+<div class="field"><fieldset><legend>② ご希望のコース <span class="required">必須</span></legend><p class="help">以下のコースから選択してください（複数選択可）</p><div class="options" id="courses"><label class="option"><input type="checkbox" name="course" value="集団クラス">集団クラス</label><label class="option"><input type="checkbox" name="course" value="個別指導">個別指導</label><label class="option"><input type="checkbox" name="course" value="キッズくらぶ">キッズくらぶ</label><label class="option"><input type="checkbox" name="course" value="そろばん">そろばん</label><label class="option"><input type="checkbox" name="course" value="小学生英語・オンライン英語">小学生英語・オンライン英語</label><label class="option"><input type="checkbox" name="course" value="該当なし（英検・フクトなど）">該当なし（英検・フクトなど）</label></div><div id="courseError" class="error hidden">ご希望のコースを1つ以上選択してください。</div></fieldset></div>
 <div class="field"><label for="message">お問い合わせ内容の詳細 <span class="required">必須</span></label><textarea id="message" name="message" required placeholder="ご質問やご希望などをご記入ください。"></textarea></div>
 <div class="actions"><button class="button" type="submit">入力内容を確認する →</button><p class="note">※この段階ではメールは送信されません。</p></div>
 </form>
@@ -48,6 +48,26 @@
  const form=document.getElementById('contactForm');
  const confirmBox=document.getElementById('confirmation');
  const checked=name=>Array.from(form.querySelectorAll('input[name="'+name+'"]:checked')).map(e=>e.value);
+ const params=new URLSearchParams(window.location.search);
+ const selectedCourse=params.get('course');
+ const courseMap={
+  group:'集団クラス', individual:'個別指導', english:'小学生英語・オンライン英語',
+  kids:'キッズくらぶ', soroban:'そろばん',
+  fukuto:'該当なし（英検・フクトなど）', eiken:'該当なし（英検・フクトなど）'
+ };
+ if(Object.prototype.hasOwnProperty.call(courseMap,selectedCourse)){
+  const courseInput=Array.from(form.querySelectorAll('input[name="course"]')).find(input=>input.value===courseMap[selectedCourse]);
+  if(courseInput)courseInput.checked=true;
+  if(selectedCourse==='fukuto'||selectedCourse==='eiken'){
+   const topicInput=Array.from(form.querySelectorAll('input[name="topic"]')).find(input=>input.value==='英検・フクトについて');
+   if(topicInput)topicInput.checked=true;
+  }
+  if(selectedCourse==='kids'||selectedCourse==='eiken'){
+   const campusInput=form.querySelector('input[name="campus"][value="那珂川校"]');
+   if(campusInput)campusInput.checked=true;
+  }
+ }
+
  form.addEventListener('submit',function(e){
   e.preventDefault();
   const valid=form.checkValidity();
