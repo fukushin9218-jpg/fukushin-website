@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>メールお問い合わせ｜福岡進学塾</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;color:#17365d;font-family:'Noto Sans JP',sans-serif;background:#f5faff}main{max-width:850px;margin:auto;padding:52px 18px 76px}.eyebrow{text-align:center;color:#68b8e7;letter-spacing:3px;font-size:13px;font-weight:800}.title{text-align:center;color:#124b91;font-size:clamp(27px,5vw,36px);margin:8px 0 12px}.lead{text-align:center;line-height:1.9;margin:0 0 32px}.panel{background:#fff;border:1px solid #d2e7f9;border-radius:20px;box-shadow:0 8px 30px rgba(18,75,145,.07);padding:32px}.section-title{color:#1767b5;font-size:19px;font-weight:800;margin:0 0 22px;padding-bottom:10px;border-bottom:2px solid #d9ecfa}.field{margin:0 0 24px}.field>label,.field legend{display:block;font-weight:700;margin-bottom:9px;font-size:15px}.required{display:inline-block;font-size:11px;background:#e95667;color:white;border-radius:5px;padding:2px 7px;margin-left:8px;vertical-align:middle}.optional{font-size:12px;color:#66819c;margin-left:8px}.field input:not([type=checkbox]):not([type=radio]),.field select,.field textarea{width:100%;padding:13px 14px;border:1px solid #b9d1e5;border-radius:9px;background:#fff;color:#17365d;font:inherit;font-size:15px}.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid #82bbed;outline-offset:1px}.field textarea{min-height:150px;resize:vertical}.field fieldset{border:0;margin:0;padding:0}.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.option{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid #d3e6f5;border-radius:10px;background:#f8fbff;cursor:pointer;font-weight:500}.option input{width:18px;height:18px;accent-color:#1767b5;flex-shrink:0}.help{font-size:13px;color:#5c7692;margin:0 0 12px;line-height:1.8}.line{border:0;border-top:1px solid #e1edf6;margin:29px 0}.actions{text-align:center}.button{border:0;border-radius:28px;background:#1767b5;color:white;font:inherit;font-weight:800;padding:15px 35px;cursor:pointer;box-shadow:0 5px 14px rgba(23,103,181,.2);transition:transform .2s,box-shadow .2s}.button:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(23,103,181,.25)}.button.secondary{background:#fff;color:#1767b5;border:1px solid #1767b5;box-shadow:none}.button:disabled{opacity:.45;cursor:not-allowed;transform:none}.note{font-size:13px;line-height:1.8;color:#57728d;margin:18px 0 0}.alert{background:#fff6e9;border:1px solid #f0d5a5;border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.8;margin-bottom:25px}.error{color:#c92b40;font-size:13px;margin-top:8px}.hidden{display:none!important}.review{background:#f8fbff;border:1px solid #d6e8f6;border-radius:12px;padding:20px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere}.back{text-align:center;margin-top:30px}.back a{display:inline-block;color:#1767b5;text-decoration:none;font-weight:700}.back a:hover{text-decoration:underline}footer{background:#124b91;color:#fff;text-align:center;padding:30px 15px;font-size:13px}@media(max-width:600px){main{padding:35px 12px 50px}.panel{padding:22px 17px}.options{grid-template-columns:1fr}.option{padding:11px}.section-title{font-size:17px}}
+</style>
+<script src="menu.js" defer></script>
+</head>
+<body>
+<div id="common-header"></div>
+<main>
+<div class="eyebrow">CONTACT</div>
+<h1 class="title">メールお問い合わせ</h1>
+<p class="lead">無料体験や入塾についてのご相談など、お気軽にお問い合わせください。<br>那珂川校・春日校共通のフォームです。</p>
+<div class="panel">
+<div class="alert"><strong>現在、メール送信機能を準備しています。</strong><br>入力内容の確認まではお試しいただけますが、まだメールの送信はできません。</div>
+<form id="contactForm" novalidate>
+<h2 class="section-title">お客様情報</h2>
+<div class="field"><fieldset><legend>お問い合わせ先の校舎 <span class="required">必須</span></legend><div class="options"><label class="option"><input type="radio" name="campus" value="那珂川校" required>那珂川校</label><label class="option"><input type="radio" name="campus" value="春日校">春日校</label></div></fieldset></div>
+<div class="field"><label for="parent">保護者のお名前 <span class="required">必須</span></label><input id="parent" name="parent" autocomplete="name" required placeholder="例：福岡 花子"></div>
+<div class="field"><label for="child">お子様のお名前 <span class="required">必須</span></label><input id="child" name="child" required placeholder="例：福岡 太郎"></div>
+<div class="field"><label for="furigana">お子様のお名前（ふりがな） <span class="required">必須</span></label><input id="furigana" name="furigana" required placeholder="例：ふくおか たろう"></div>
+<div class="field"><label for="school">学校名 <span class="required">必須</span></label><input id="school" name="school" required placeholder="例：〇〇中学校"></div>
+<div class="field"><label for="grade">学年 <span class="required">必須</span></label><select id="grade" name="grade" required><option value="">学年を選択してください</option><option>年長</option><option>小学1年生</option><option>小学2年生</option><option>小学3年生</option><option>小学4年生</option><option>小学5年生</option><option>小学6年生</option><option>中学1年生</option><option>中学2年生</option><option>中学3年生</option><option>高校1年生</option><option>高校2年生</option><option>高校3年生</option><option>その他</option></select></div>
+<div class="field"><label for="email">メールアドレス <span class="required">必須</span></label><input type="email" id="email" name="email" autocomplete="email" required placeholder="例：example@email.com"></div>
+<div class="field"><label for="phone">電話番号 <span class="optional">任意</span></label><input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="例：090-0000-0000"></div>
+<hr class="line">
+<h2 class="section-title">お問い合わせ内容</h2>
+<div class="field"><fieldset><legend>① お問い合わせの内容 <span class="required">必須</span></legend><p class="help">当てはまる項目を選択してください（複数選択可）</p><div class="options" id="topics"><label class="option"><input type="checkbox" name="topic" value="無料体験のお申し込み">無料体験のお申し込み</label><label class="option"><input type="checkbox" name="topic" value="入塾について">入塾について</label><label class="option"><input type="checkbox" name="topic" value="英検・フクトについて">英検・フクトについて</label><label class="option"><input type="checkbox" name="topic" value="その他のお問い合わせ">その他のお問い合わせ</label></div><div id="topicError" class="error hidden">お問い合わせの内容を1つ以上選択してください。</div></fieldset></div>
+<div class="field"><fieldset><legend>② ご希望のコース <span class="optional">任意</span></legend><p class="help">以下のコースから選択してください（複数選択可）</p><div class="options"><label class="option"><input type="checkbox" name="course" value="集団クラス">集団クラス</label><label class="option"><input type="checkbox" name="course" value="個別指導">個別指導</label><label class="option"><input type="checkbox" name="course" value="キッズくらぶ">キッズくらぶ</label><label class="option"><input type="checkbox" name="course" value="そろばん">そろばん</label></div></fieldset></div>
+<div class="field"><label for="message">お問い合わせ内容の詳細 <span class="required">必須</span></label><textarea id="message" name="message" required placeholder="ご質問やご希望などをご記入ください。"></textarea></div>
+<div class="actions"><button class="button" type="submit">入力内容を確認する →</button><p class="note">※この段階ではメールは送信されません。</p></div>
+</form>
+<section id="confirmation" class="hidden" aria-live="polite"><h2 class="section-title">入力内容の確認</h2><p class="help">入力内容をご確認ください。修正する場合は「入力画面に戻る」を押してください。</p><div class="review" id="review"></div><div class="actions" style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button class="button secondary" id="editButton" type="button">← 入力画面に戻る</button><button class="button" type="button" disabled title="送信サービス設定後に有効化します">メールを送信する（準備中）</button></div><p class="note" style="text-align:center">※送信機能の設定が完了するまで、このボタンは利用できません。</p></section>
+</div>
+<div class="back"><a href="index.html#contact">← トップページのお問い合わせに戻る</a></div>
+</main>
+<footer>SINCE 1975　福岡総合教育学院<br>© 福岡進学塾</footer>
+<script>
+(function(){
+ const form=document.getElementById('contactForm');
+ const confirmBox=document.getElementById('confirmation');
+ const checked=name=>Array.from(form.querySelectorAll('input[name="'+name+'"]:checked')).map(e=>e.value);
+ form.addEventListener('submit',function(e){
+  e.preventDefault();
+  const valid=form.checkValidity();
+  const topicValid=checked('topic').length>0;
+  document.getElementById('topicError').classList.toggle('hidden',topicValid);
+  if(!valid){form.reportValidity();return;}
+  if(!topicValid){document.getElementById('topics').scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const entries=[['お問い合わせ先の校舎',checked('campus').join('、')],['保護者のお名前',document.getElementById('parent').value],['お子様のお名前',document.getElementById('child').value],['お子様のお名前（ふりがな）',document.getElementById('furigana').value],['学校名',document.getElementById('school').value],['学年',document.getElementById('grade').value],['メールアドレス',document.getElementById('email').value],['電話番号',document.getElementById('phone').value||'未入力'],['お問い合わせの内容',checked('topic').join('、')],['ご希望のコース',checked('course').join('、')||'選択なし'],['お問い合わせ内容の詳細',document.getElementById('message').value]];
+  document.getElementById('review').textContent=entries.map(([k,v])=>k+'\n'+v).join('\n\n');
+  form.classList.add('hidden');confirmBox.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});
+ });
+ document.getElementById('editButton').addEventListener('click',()=>{confirmBox.classList.add('hidden');form.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+</body>
+</html>
