@@ -20,7 +20,7 @@
 <h1 class="title">メールお問い合わせ</h1>
 <p class="lead">無料体験や入塾についてのご相談など、お気軽にお問い合わせください。<br>那珂川校・春日校共通のフォームです。</p>
 <div class="panel">
-<div class="alert"><strong>現在、メール送信機能を準備しています。</strong><br>入力内容の確認まではお試しいただけますが、まだメールの送信はできません。</div>
+<div class="alert"><strong>お問い合わせについて</strong><br>必要事項をご入力のうえ、確認画面から送信してください。送信後、担当者よりご連絡いたします。<br>※送信後に受付の確認が取れない場合は、各校舎のLINEからお問い合わせください。</div>
 <form id="contactForm" novalidate>
 <h2 class="section-title">お客様情報</h2>
 <div class="field"><fieldset><legend>お問い合わせ先の校舎 <span class="required">必須</span></legend><div class="options"><label class="option"><input type="radio" name="campus" value="那珂川校" required>那珂川校</label><label class="option"><input type="radio" name="campus" value="春日校">春日校</label></div></fieldset></div>
@@ -36,9 +36,11 @@
 <div class="field"><fieldset><legend>① お問い合わせの内容 <span class="required">必須</span></legend><p class="help">当てはまる項目を選択してください（複数選択可）</p><div class="options" id="topics"><label class="option"><input type="checkbox" name="topic" value="無料体験のお申し込み">無料体験のお申し込み</label><label class="option"><input type="checkbox" name="topic" value="入塾について">入塾について</label><label class="option"><input type="checkbox" name="topic" value="英検・フクトについて">英検・フクトについて</label><label class="option"><input type="checkbox" name="topic" value="その他のお問い合わせ">その他のお問い合わせ</label></div><div id="topicError" class="error hidden">お問い合わせの内容を1つ以上選択してください。</div></fieldset></div>
 <div class="field"><fieldset><legend>② ご希望のコース <span class="required">必須</span></legend><p class="help">以下のコースから選択してください（複数選択可）</p><div class="options" id="courses"><label class="option"><input type="checkbox" name="course" value="集団クラス">集団クラス</label><label class="option"><input type="checkbox" name="course" value="個別指導">個別指導</label><label class="option"><input type="checkbox" name="course" value="キッズくらぶ">キッズくらぶ</label><label class="option"><input type="checkbox" name="course" value="そろばん">そろばん</label><label class="option"><input type="checkbox" name="course" value="小学生英語・オンライン英語">小学生英語・オンライン英語</label><label class="option"><input type="checkbox" name="course" value="該当なし（英検・フクトなど）">該当なし（英検・フクトなど）</label></div><div id="courseError" class="error hidden">ご希望のコースを1つ以上選択してください。</div></fieldset></div>
 <div class="field"><label for="message">お問い合わせ内容の詳細 <span class="required">必須</span></label><textarea id="message" name="message" required placeholder="ご質問やご希望などをご記入ください。"></textarea></div>
-<div class="actions"><button class="button" type="submit">入力内容を確認する →</button><p class="note">※この段階ではメールは送信されません。</p></div>
+<div class="actions"><button class="button" type="submit">入力内容を確認する →</button><p class="note">※次の確認画面ではまだメールは送信されません。</p></div>
 </form>
-<section id="confirmation" class="hidden" aria-live="polite"><h2 class="section-title">入力内容の確認</h2><p class="help">入力内容をご確認ください。修正する場合は「入力画面に戻る」を押してください。</p><div class="review" id="review"></div><div class="actions" style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button class="button secondary" id="editButton" type="button">← 入力画面に戻る</button><button class="button" type="button" disabled title="送信サービス設定後に有効化します">メールを送信する（準備中）</button></div><p class="note" style="text-align:center">※送信機能の設定が完了するまで、このボタンは利用できません。</p></section>
+<section id="confirmation" class="hidden" aria-live="polite"><h2 class="section-title">入力内容の確認</h2><p class="help">入力内容をご確認ください。修正する場合は「入力画面に戻る」を押してください。</p><div class="review" id="review"></div><div class="actions" style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><button class="button secondary" id="editButton" type="button">← 入力画面に戻る</button><button class="button" id="sendButton" type="button">メールを送信する</button></div><p class="note" style="text-align:center">※送信ボタンは一度だけ押してください。</p></section>
+<section id="sendResult" class="hidden" aria-live="polite" role="status"><h2 class="section-title" id="resultTitle">送信処理のご案内</h2><div class="review" id="resultMessage"></div><div class="actions" style="margin-top:24px"><button class="button secondary" id="returnButton" type="button">入力内容に戻る</button></div></section>
+<p class="note" style="text-align:center">お問い合わせがうまく送れない場合：<a href="https://lin.ee/YxSbKMny" target="_blank" rel="noopener noreferrer">那珂川校LINE</a> ／ <a href="https://lin.ee/9uWutlR" target="_blank" rel="noopener noreferrer">春日校LINE</a></p>
 </div>
 <div class="back"><a href="index.html#contact">← トップページのお問い合わせに戻る</a></div>
 </main>
@@ -47,6 +49,11 @@
 (function(){
  const form=document.getElementById('contactForm');
  const confirmBox=document.getElementById('confirmation');
+ const resultBox=document.getElementById('sendResult');
+ const sendButton=document.getElementById('sendButton');
+ const endpoint='https://script.google.com/macros/s/AKfycbwnZX6KVHUslp7rEsWVc0-w2f1T8ln8Nq_Qh2baE0pUj_A8FpFna2BeNpLuQ7Y7bJ57/exec';
+ let sending=false;
+ let submitted=false;
  const checked=name=>Array.from(form.querySelectorAll('input[name="'+name+'"]:checked')).map(e=>e.value);
  const params=new URLSearchParams(window.location.search);
  const selectedCourse=params.get('course');
@@ -83,6 +90,46 @@
   form.classList.add('hidden');confirmBox.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});
  });
  document.getElementById('editButton').addEventListener('click',()=>{confirmBox.classList.add('hidden');form.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});});
+ // GitHub Pages -> Apps Script はCORS制約のため no-cors で送信。
+ // HTTPレスポンス本文を確認できないため、画面上で「受付完了」と断定しない。
+ sendButton.addEventListener('click',async()=>{
+  if(sending||submitted)return;
+  sending=true;
+  sendButton.disabled=true;
+  sendButton.textContent='送信中です…';
+  const data=new URLSearchParams();
+  for(const key of ['campus','parent','child','furigana','school','grade','email','phone','message']){
+   const el=key==='campus'?form.querySelector('input[name="campus"]:checked'):form.elements.namedItem(key);
+   data.set(key,el?el.value:'');
+  }
+  data.set('topic',checked('topic').join('、'));
+  data.set('course',checked('course').join('、'));
+  data.set('website','');
+  try{
+   await fetch(endpoint,{method:'POST',mode:'no-cors',body:data,redirect:'follow',credentials:'omit'});
+   submitted=true;
+   document.getElementById('resultTitle').textContent='お問い合わせの送信操作を受け付けました';
+   document.getElementById('resultMessage').textContent='お問い合わせの送信処理を行いました。\n\nご入力いただき、ありがとうございます。担当者が内容を確認し、順次ご連絡いたします。\n\n※この画面だけでは受付完了を確認できません。しばらくしても連絡がない場合は、同じ内容を繰り返し送信せず、各校舎のLINEからお問い合わせください。';
+   confirmBox.classList.add('hidden');resultBox.classList.remove('hidden');
+  }catch(err){
+   document.getElementById('resultTitle').textContent='送信状況を確認できませんでした';
+   document.getElementById('resultMessage').textContent='通信が完了したか確認できませんでした。送信されている可能性もありますので、同じ内容を繰り返し送信せず、各校舎のLINEからお問い合わせください。';
+   confirmBox.classList.add('hidden');resultBox.classList.remove('hidden');
+  }finally{
+   sending=false;
+   sendButton.textContent='メールを送信する';
+  }
+ });
+ document.getElementById('returnButton').addEventListener('click',()=>{
+  resultBox.classList.add('hidden');
+  form.classList.remove('hidden');
+  if(submitted){
+   const note=document.createElement('p');note.className='note';
+   note.textContent='送信操作はすでに行われています。重複送信を避けるため、再送信せず各校舎のLINEからお問い合わせください。';
+   form.querySelector('.actions').appendChild(note);
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+ });
 })();
 </script>
 </body>
