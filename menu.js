@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const header = document.getElementById("common-header");
   if (!header) return;
 
-  // メニュー専用デザイン
   const style = document.createElement("style");
+
   style.textContent = `
     .fsj-header {
       font-family: "Noto Sans JP", sans-serif;
@@ -71,11 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
       gap: 12px;
     }
 
-    /* 上部ナビゲーション */
+    /* 上部メニュー全体 */
 
     .fsj-nav {
       background: #1c508f;
-      padding: 12px 15px;
+      padding: 16px 15px;
       position: relative;
       z-index: 1000;
     }
@@ -87,58 +87,78 @@ document.addEventListener("DOMContentLoaded", function () {
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      gap: 7px;
+      gap: 12px;
     }
+
+    /* メニューの文字 */
 
     .fsj-nav-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       color: white !important;
       text-decoration: none !important;
-      font-size: 15px;
+
+      font-size: 16px;
       font-weight: 800;
-      padding: 12px 13px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.07);
-      transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+
+      padding: 10px 9px;
+
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+
       white-space: nowrap;
+
+      transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        text-shadow 0.25s ease;
     }
+
+    /* マウスを重ねると文字だけ浮き上がる */
 
     .fsj-nav-link:hover {
-      background: #367dc0;
-      transform: translateY(-4px);
+      transform: translateY(-5px);
+      color: #ffffff !important;
+      text-shadow: 0 2px 8px rgba(255,255,255,0.35);
+      background: transparent !important;
     }
 
+    /* 現在のページも背景色は変更しない */
+
     .fsj-nav-link.active {
-      background: #3984c9;
+      background: transparent !important;
+      color: white !important;
     }
 
     .fsj-nav-link:focus-visible,
     .fsj-menu-toggle:focus-visible {
-      outline: 3px solid #ffcb42;
+      outline: 2px solid #ffffff;
       outline-offset: 3px;
     }
 
-    /* スマホ用メニューボタン */
+    /* スマートフォン用 */
 
     .fsj-menu-toggle {
       display: none;
       width: 100%;
-      padding: 13px 20px;
-      background: #2869a9;
+      padding: 12px 18px;
+
+      background: transparent;
       color: white;
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 10px;
+
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: 8px;
+
       font-family: inherit;
       font-size: 17px;
       font-weight: 800;
+
       cursor: pointer;
     }
-
-    /* タブレット */
 
     @media (max-width: 1100px) {
 
@@ -147,17 +167,15 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       .fsj-nav-inner {
-        gap: 6px;
+        gap: 7px;
       }
 
       .fsj-nav-link {
         font-size: 14px;
-        padding: 10px 12px;
+        padding: 9px 7px;
       }
 
     }
-
-    /* スマートフォン */
 
     @media (max-width: 700px) {
 
@@ -201,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
         display: none;
         flex-direction: column;
         align-items: stretch;
-        gap: 6px;
+        gap: 0;
         padding-top: 10px;
       }
 
@@ -212,20 +230,24 @@ document.addEventListener("DOMContentLoaded", function () {
       .fsj-nav-link {
         display: block;
         width: 100%;
+
         text-align: center;
         font-size: 16px;
-        padding: 13px 15px;
-        background: rgba(255,255,255,0.08);
+
+        padding: 14px 10px;
+
+        background: transparent !important;
+        border-bottom: 1px solid rgba(255,255,255,0.16) !important;
       }
 
       .fsj-nav-link:hover {
-        transform: none;
-        background: #367dc0;
+        transform: translateY(-3px);
       }
 
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       .fsj-nav-link,
       .fsj-instagram {
         transition: none;
@@ -235,22 +257,25 @@ document.addEventListener("DOMContentLoaded", function () {
       .fsj-instagram:hover {
         transform: none;
       }
+
     }
   `;
 
   document.head.appendChild(style);
 
-  // 共通ヘッダー本体
   header.innerHTML = `
+
     <div class="fsj-header">
 
       <div class="fsj-header-top">
 
         <a href="index.html" class="fsj-logo">
+
           <img
             src="新ホームページ用.png"
             alt="福岡進学塾"
           >
+
         </a>
 
         <div class="fsj-schools">
@@ -281,6 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
               >
 
                 <defs>
+
                   <linearGradient
                     id="instaGradient"
                     x1="0"
@@ -288,10 +314,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     x2="1"
                     y2="0"
                   >
+
                     <stop offset="0%" stop-color="#ffcb42"/>
                     <stop offset="45%" stop-color="#fa315f"/>
                     <stop offset="100%" stop-color="#8646c8"/>
+
                   </linearGradient>
+
                 </defs>
 
                 <rect
@@ -394,7 +423,8 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
   `;
 
-  // スマートフォンのメニュー開閉
+  // スマホメニューの開閉
+
   const toggle = header.querySelector(".fsj-menu-toggle");
   const navLinks = header.querySelector(".fsj-nav-inner");
 
@@ -410,7 +440,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
-  // メニューを押したらスマホメニューを閉じる
+  // メニュー選択後は閉じる
+
   header.querySelectorAll(".fsj-nav-link").forEach(function (link) {
 
     link.addEventListener("click", function () {
@@ -418,37 +449,10 @@ document.addEventListener("DOMContentLoaded", function () {
       navLinks.classList.remove("open");
 
       toggle.setAttribute("aria-expanded", "false");
+
       toggle.textContent = "☰ メニュー";
 
     });
-
-  });
-
-  // 現在開いているページを強調表示
-  const currentPage =
-    window.location.pathname.split("/").pop() || "index.html";
-
-  let activePage = currentPage;
-
-  if (
-    currentPage === "season.html" ||
-    currentPage === "junior-preparation.html"
-  ) {
-    activePage = "special.html";
-  }
-
-  header.querySelectorAll(".fsj-nav-link").forEach(function (link) {
-
-    const href = link.getAttribute("href");
-    const linkPage = href.split("#")[0];
-
-    if (
-      linkPage === activePage &&
-      !href.includes("#")
-    ) {
-      link.classList.add("active");
-      link.setAttribute("aria-current", "page");
-    }
 
   });
 
