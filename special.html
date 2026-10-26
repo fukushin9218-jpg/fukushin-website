@@ -56,10 +56,10 @@ header p{font-size:16px;margin:0}
 </section>
 <div class="cards" id="course-cards">
 <article class="card" id="season-card" hidden>
-<div class="icon">📚</div><span class="tag">春期・夏期・冬期</span>
-<h2>季節講習</h2>
-<p>学年や目標に合わせて、復習から次の学習への準備まで。<br>集団クラス・個別指導などの講習をご案内します。</p>
-<a class="btn" href="season.html">季節講習を詳しく見る →</a>
+<div class="icon">❄️</div><span class="tag">制作確認用・内容調整中</span>
+<h2>冬期講習</h2>
+<p>冬休みの学びを、新学期の自信へ。<br>集団クラス・個別指導などをご案内します。</p>
+<a class="btn" id="season-link" href="season.html?preview=winter">冬期講習を詳しく見る →</a>
 </article>
 <article class="card" id="junior-card" hidden>
 <div class="icon">🎒</div><span class="tag green">現小学6年生対象</span>
@@ -73,26 +73,28 @@ header p{font-size:16px;margin:0}
 <h2>現在、募集中の講習・特別講座はありません。</h2>
 <p>次回のご案内は、詳細が決まり次第ホームページでお知らせします。</p>
 </section>
-<p class="note">※講座の実施時期・募集状況に応じて、表示内容を更新しています。</p>
+<p class="note" id="preview-note">※冬期講習は制作確認用です。日程・料金・募集条件は未確定です。</p>
 <div class="back"><a class="btn" href="index.html">← トップページに戻る</a></div>
 </main>
 <script>
 window.addEventListener('DOMContentLoaded',function(){
-  // 中学準備講座の募集期間だけ true に変更してください。
+  // 制作中は両方表示。正式公開時は下記の設定を変更してください。
+  const SHOW_WINTER_PREVIEW = true;
   const JUNIOR_PREPARATION_OPEN = true;
-  // 季節講習は season-settings.js の公開設定と連動します。
-  const settings=window.SEASON_SETTINGS||{};
-  const seasonOpen=['spring','summer','winter'].some(key=>settings[key]===true);
-  const params=new URLSearchParams(window.location.search);
-  const preview=params.get('preview');
-  const previewSeason=['spring','summer','winter'].includes(preview);
-  const juniorOpen=JUNIOR_PREPARATION_OPEN;
-  document.getElementById('season-card').hidden=!(seasonOpen||previewSeason);
-  document.getElementById('junior-card').hidden=!juniorOpen;
-  document.getElementById('empty-state').hidden=(seasonOpen||previewSeason||juniorOpen);
-  if(previewSeason&&!seasonOpen){
-    document.querySelector('#season-card .btn').href='season.html?preview='+encodeURIComponent(preview);
+  const settings = window.SEASON_SETTINGS || {};
+  const seasonOpen = ['spring','summer','winter'].some(key => settings[key] === true);
+  const showSeason = SHOW_WINTER_PREVIEW || seasonOpen;
+  document.getElementById('season-card').hidden = !showSeason;
+  document.getElementById('junior-card').hidden = !JUNIOR_PREPARATION_OPEN;
+  document.getElementById('empty-state').hidden = showSeason || JUNIOR_PREPARATION_OPEN;
+  const seasonLink = document.getElementById('season-link');
+  if (seasonOpen && !SHOW_WINTER_PREVIEW) {
+    seasonLink.href = 'season.html';
+    document.querySelector('#season-card .tag').textContent = '募集中の季節講習';
+    document.querySelector('#season-card h2').textContent = '季節講習';
+    seasonLink.textContent = '季節講習を詳しく見る →';
   }
+  document.getElementById('preview-note').hidden = !SHOW_WINTER_PREVIEW;
 });
 </script>
 </body>
