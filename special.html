@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>季節講習・特別講座｜福岡進学塾</title>
+<meta name="description" content="福岡進学塾の季節講習・特別講座のご案内。那珂川校・春日校。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#124b91;--blue:#1767b5;--ink:#17365d}
+*{box-sizing:border-box}
+body{margin:0;background:#f5faff;color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.85}
+.wrap{max-width:1100px;margin:auto;padding:0 22px}
+header{text-align:center;padding:58px 10px 28px}
+.eyebrow{color:#55a9df;font-size:13px;font-weight:900;letter-spacing:.25em}
+h1{font-size:clamp(29px,5vw,43px);color:var(--navy);margin:8px 0 15px}
+header p{font-size:16px;margin:0}
+.hero{background:linear-gradient(120deg,#0d4c99,#2186ce 70%,#8bdaf9);border-radius:25px;padding:32px;color:white;text-align:center;margin:16px 0 34px}
+.hero h2{font-size:clamp(21px,3.5vw,29px);margin:0 0 8px}
+.hero p{margin:0}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.card{background:white;border:1px solid #d4e9f9;border-radius:22px;padding:34px 28px;text-align:center}
+.card .icon{font-size:45px}
+.card h2{font-size:clamp(23px,3vw,28px);color:var(--navy);margin:9px 0}
+.card p{font-size:15px;min-height:82px;margin:0 0 22px}
+.tag{display:inline-block;border-radius:30px;background:#e7f3ff;color:#0d5aa4;font-size:13px;font-weight:800;padding:4px 16px;margin-bottom:10px}
+.tag.green{background:#e6f9ef;color:#08765a}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;background:var(--blue);border-radius:14px;padding:14px 24px;font-weight:900;min-width:210px;transition:transform .2s ease}
+.btn.green{background:#08765a}
+.btn:hover{transform:translateY(-4px)}
+.btn:focus-visible{outline:3px solid #f7b733;outline-offset:4px}
+.empty{background:white;border:1px solid #d4e9f9;border-radius:22px;text-align:center;padding:50px 25px}
+.empty h2{color:var(--navy)}
+.note{text-align:center;margin:32px 0;color:#5a738b;font-size:14px}
+.back{text-align:center;padding:15px 0 70px}
+.back .btn{border-radius:30px}
+@media(max-width:720px){.cards{grid-template-columns:1fr}.card{padding:28px 20px}.card p{min-height:0}.hero{padding:26px 17px}}
+@media(prefers-reduced-motion:reduce){.btn{transition:none}.btn:hover{transform:none}}
+</style>
+<script src="menu.js" defer></script>
+<script src="season-settings.js" defer></script>
+</head>
+<body>
+<div id="common-header"></div>
+<main class="wrap">
+<header>
+<div class="eyebrow">SEASONAL &amp; SPECIAL COURSES</div>
+<h1>季節講習・特別講座</h1>
+<p>春・夏・冬の学びから、中学校入学への準備まで。<br>一人ひとりの新しい一歩を、福岡進学塾が応援します。</p>
+</header>
+<section class="hero">
+<h2>今、必要な学びを、未来の自信へ。</h2>
+<p>那珂川校・春日校で実施する講習・特別講座をご案内します。</p>
+</section>
+<div class="cards" id="course-cards">
+<article class="card" id="season-card" hidden>
+<div class="icon">📚</div><span class="tag">春期・夏期・冬期</span>
+<h2>季節講習</h2>
+<p>学年や目標に合わせて、復習から次の学習への準備まで。<br>集団クラス・個別指導などの講習をご案内します。</p>
+<a class="btn" href="season.html">季節講習を詳しく見る →</a>
+</article>
+<article class="card" id="junior-card" hidden>
+<div class="icon">🎒</div><span class="tag green">現小学6年生対象</span>
+<h2>中学準備講座</h2>
+<p>中学校での学習を安心してスタートするために。<br>英語・数学を中心に、入学前の基礎づくりを応援します。</p>
+<a class="btn green" href="junior-preparation.html">中学準備講座を詳しく見る →</a>
+</article>
+</div>
+<section class="empty" id="empty-state" hidden>
+<div style="font-size:43px">📖</div>
+<h2>現在、募集中の講習・特別講座はありません。</h2>
+<p>次回のご案内は、詳細が決まり次第ホームページでお知らせします。</p>
+</section>
+<p class="note">※講座の実施時期・募集状況に応じて、表示内容を更新しています。</p>
+<div class="back"><a class="btn" href="index.html">← トップページに戻る</a></div>
+</main>
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+  // 中学準備講座の募集期間だけ true に変更してください。
+  const JUNIOR_PREPARATION_OPEN = true;
+  // 季節講習は season-settings.js の公開設定と連動します。
+  const settings=window.SEASON_SETTINGS||{};
+  const seasonOpen=['spring','summer','winter'].some(key=>settings[key]===true);
+  const params=new URLSearchParams(window.location.search);
+  const preview=params.get('preview');
+  const previewSeason=['spring','summer','winter'].includes(preview);
+  const juniorOpen=JUNIOR_PREPARATION_OPEN;
+  document.getElementById('season-card').hidden=!(seasonOpen||previewSeason);
+  document.getElementById('junior-card').hidden=!juniorOpen;
+  document.getElementById('empty-state').hidden=(seasonOpen||previewSeason||juniorOpen);
+  if(previewSeason&&!seasonOpen){
+    document.querySelector('#season-card .btn').href='season.html?preview='+encodeURIComponent(preview);
+  }
+});
+</script>
+</body>
+</html>
