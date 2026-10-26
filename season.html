@@ -92,7 +92,7 @@ a { color: var(--blue); }
   background: var(--blue);
   color: white;
   font-weight: 800;
-  transition: transform .2s;
+  transition: transform .2s ease;
 }
 
 .button:hover { transform: translateY(-2px); }
@@ -401,6 +401,42 @@ a { color: var(--blue); }
   font-weight: 800;
 }
 
+/* 中学準備講座への案内ボタン */
+.junior-page-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  padding: 16px 30px;
+  border-radius: 14px;
+  background: #08765a;
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+  text-align: center;
+  transition: transform .2s ease;
+}
+.junior-page-button:hover,
+.line-button:hover,
+.mail-button:hover {
+  transform: translateY(-4px);
+}
+.junior-page-button:focus-visible,
+.line-button:focus-visible,
+.mail-button:focus-visible,
+.button:focus-visible {
+  outline: 3px solid #ffb72e;
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .button, .junior-page-button, .line-button, .mail-button {
+    transition: none;
+  }
+  .button:hover, .junior-page-button:hover, .line-button:hover, .mail-button:hover {
+    transform: none;
+  }
+}
+
 /* お問い合わせ */
 
 .contact-area {
@@ -473,8 +509,9 @@ a { color: var(--blue); }
   font-size: 19px;
   font-weight: 900;
   text-decoration: none;
-  box-shadow: 0 8px 16px #00000012;
+  transition: transform .2s ease;
 }
+
 
 .mail-button {
   display: block;
@@ -485,8 +522,9 @@ a { color: var(--blue); }
   font-size: 21px;
   font-weight: 900;
   text-decoration: none;
-  box-shadow: 0 8px 16px #00000012;
+  transition: transform .2s ease;
 }
+
 
 .mail-button small {
   display: block;
@@ -852,9 +890,9 @@ a { color: var(--blue); }
 </div>
 
 <div class="junior-link">
-  <span class="preparing">
-    中学準備講座の詳しいご案内ページは準備中です
-  </span>
+  <a class="junior-page-button" href="junior-preparation.html">
+    🎒 中学準備講座の詳しいご案内はこちら →
+  </a>
 </div>
 
 </div>
