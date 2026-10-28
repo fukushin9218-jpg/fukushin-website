@@ -1,0 +1,853 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>塾生専用 | 福岡進学塾</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Arial", "Meiryo", sans-serif;
+      background: #eef7ff;
+      color: #124b91;
+    }
+    .login-box {
+      max-width: 1100px;
+      margin: 70px auto;
+      padding: 40px 30px;
+      background: white;
+      border-radius: 22px;
+      box-shadow: 0 8px 28px rgba(0, 50, 110, 0.1);
+      text-align: center;
+    }
+    .login-box:not(.logged-in) {
+  max-width: 430px;
+}
+    h1 { font-size: 28px; }
+    p { line-height: 1.8; }
+    /* 塾生専用ページ：各項目のタイトル */
+.login-box.logged-in h2 {
+  background: #EAF3FF;
+  border-left: 6px solid #19569B;
+  border-radius: 8px;
+  padding: 15px 18px;
+  margin-top: 36px;
+  margin-bottom: 20px;
+  color: #164C8B;
+  text-align: left;
+  font-size: 22px;
+}
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid #bdd5ec;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: #14549a;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #2875bd; }
+    /* 平均点グラフの切り替えボタン */
+.average-buttons button {
+  width: auto;
+  margin: 0;
+  padding: 10px 18px;
+  font-size: 15px;
+  border-radius: 25px;
+  background: #EAF3FF;
+  color: #19569B;
+  border: 2px solid #C5DDF5;
+}
+
+.average-buttons button:hover {
+  background: #D5E9FF;
+}
+
+/* 平均点グラフ：選択中の科目 */
+/* 平均点グラフ：選択中の科目 */
+.average-buttons button.active {
+  background: #19569B;
+  color: #FFFFFF;
+  border-color: #19569B;
+}
+
+/* 高校検索の入力欄を目立たせる */
+#schoolKeyword {
+  border: 3px solid #222222;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+    #message { color: #d63355; }
+    /* 入試日程のカード */
+.exam-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 30px 0 45px;
+  text-align: left;
+}
+
+.exam-card {
+  background: #eef6ff;
+  border: 1px solid #d4e7fa;
+  border-radius: 16px;
+  padding: 24px 18px;
+}
+
+.exam-card:nth-child(2) {
+  background: #edf9f2;
+  border-color: #d1eadb;
+}
+
+.exam-card:nth-child(3) {
+  background: #fff5e9;
+  border-color: #f4dfc5;
+}
+
+.exam-card h3 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 21px;
+}
+
+.exam-card p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 12px 0;
+}
+
+/* スマートフォン用 */
+@media (max-width: 800px) {
+  .exam-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .login-box {
+    margin: 25px 12px;
+    padding: 25px 16px;
+  }
+}
+    /* 塾生専用ページ：固定ナビゲーション */
+.student-fixed-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 9999;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  padding: 10px 14px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  background: rgba(234, 243, 255, 0.97);
+  border-top: 2px solid #19569B;
+  box-shadow: 0 -3px 14px rgba(0, 40, 90, 0.12);
+}
+
+.student-fixed-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 4px;
+  box-sizing: border-box;
+  border-radius: 9px;
+  background: white;
+  color: #164C8B;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+
+.student-fixed-menu a:hover {
+  background: #19569B;
+  color: white;
+}
+
+/* ボタンで移動するときの動き */
+html {
+  scroll-behavior: smooth;
+}
+
+.login-box.logged-in {
+  padding-bottom: 110px;
+}
+
+/* スマートフォン用 */
+@media (max-width: 800px) {
+  .student-fixed-menu {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+    padding: 7px;
+    padding-bottom: max(7px, env(safe-area-inset-bottom));
+  }
+
+  .student-fixed-menu a {
+    min-height: 38px;
+    padding: 6px 2px;
+    font-size: 11px;
+  }
+
+  .login-box.logged-in {
+    padding-bottom: 150px;
+  }
+}
+    /* 公開用ページのみ：制作中サイトの共通メニューを表示しない */
+    .public-student-topbar {
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; flex-wrap:wrap; padding:14px max(18px, calc((100vw - 1100px)/2));
+      background:#164C8B; color:white; font-weight:bold;
+    }
+    .public-student-topbar a {
+      display:inline-block; padding:9px 14px; border-radius:22px;
+      background:white; color:#164C8B; text-decoration:none;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .public-student-topbar a:hover, .public-student-topbar a:focus-visible {
+      transform:translateY(-3px); box-shadow:0 6px 15px rgba(0,0,0,.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="public-student-topbar">
+    <span>福岡進学塾｜塾生専用ページ</span>
+    <a href="https://www.fukuokashingakujuku.jp/">現在のホームページへ戻る ↗</a>
+  </div>
+
+  <main class="login-box">
+    <h1>塾生専用ページ</h1>
+    <p>福岡進学塾の塾生専用ページです。<br>
+    ユーザー名とパスワードを入力してください。</p>
+
+    <input id="username" type="text"
+           placeholder="ユーザー名" autocomplete="username">
+
+    <input id="password" type="password"
+           placeholder="パスワード" autocomplete="current-password">
+
+    <button type="button" onclick="login()">ログイン</button>
+
+    <p id="message"></p>
+  </main>
+
+  <script>
+    
+  // 塾生共通のログイン設定（後から変更できます）
+  const LOGIN_USER = "student";
+  const LOGIN_PASS = "fukushin2026";
+
+  function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("message");
+
+    if (username === LOGIN_USER && password === LOGIN_PASS) {
+      document.querySelector(".login-box").classList.add("logged-in");
+     document.querySelector(".login-box").innerHTML = `
+  <h1>高校入試・進路情報</h1>
+  <p>福岡進学塾 塾生専用ページへようこそ！</p>
+
+  <h2 id="section-schedule">🗓️ 令和9年度 入試日程</h2>
+
+<div class="exam-grid">
+  <div class="exam-card">
+    <h3>🏫 私立高校</h3>
+    <p>専願入試：1月26日</p>
+    <p>前期入試：2月12日</p>
+    <p>後期入試：2月20日</p>
+  </div>
+
+  <div class="exam-card">
+    <h3>📘 公立高校</h3>
+    <p>推薦・特色化選抜：2月2日・3日</p>
+    <p>一般入試：3月9日</p>
+    <p>補充募集：3月25日</p>
+  </div>
+
+  <div class="exam-card">
+    <h3>🎓 高専</h3>
+    <p><strong style="color:#C56B17;">推薦入試</strong>（久留米高専）：1月16日（土）</p>
+    <p><strong style="color:#C56B17;">推薦入試</strong>（北九州高専）：1月16日（土）</p>
+    <p><strong style="color:#C56B17;">推薦入試</strong>（有明高専）：1月9日（土）</p>
+    <p><strong style="color:#19569B;">一般入試</strong>（3校共通）：2月14日（日）</p>
+  </div>
+</div>
+
+  <h2 id="section-search">🏫 高校検索・学校情報</h2>
+<p>学校名を入力すると、該当する高校を探せます。</p>
+
+<div class="school-search">
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:15px;">
+  <button type="button" style="width:auto; flex:1 1 100px; padding:12px 16px; margin:0;" onclick="filterSchools('すべて')">すべて</button>
+<button type="button" style="width:auto; flex:1 1 100px; padding:12px 16px; margin:0;" onclick="filterSchools('公立')">公立</button>
+<button type="button" style="width:auto; flex:1 1 100px; padding:12px 16px; margin:0;" onclick="filterSchools('私立')">私立</button>
+<button type="button" style="width:auto; flex:1 1 100px; padding:12px 16px; margin:0;" onclick="filterSchools('高専')">高専</button>
+</div>
+  <input
+    type="search"
+    id="schoolKeyword"
+    placeholder="🔍 学校名を入力（例：春日・筑紫）"
+    oninput="searchSchools()"
+  >
+  <div id="schoolResults">
+    <p>ここに学校一覧が表示されます。</p>
+  </div>
+</div>
+
+  <h2 id="section-fscore">📊 フクトB判定 Fスコア一覧</h2>
+
+<p style="background:#F0F7FF; padding:15px; border-radius:10px; text-align:left; line-height:1.8;">
+  📘 <strong>Fスコアについて</strong><br>
+  B判定は、学力のみでの合格可能性が約75％の目安です（内申点は含みません）。<br>
+  実際の入試結果を保証するものではありませんので、志望校選びの参考としてご覧ください。
+</p>
+
+<p>令和8年10月更新｜福岡進学塾</p>
+<div id="fscoreTable"></div>
+
+  <h2 id="section-average">📈 福岡県公立高校入試・平均点の推移</h2>
+<p>平成21年度〜令和8年度｜5教科・各60点満点（合計300点）</p>
+<div class="average-buttons" style="display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:20px 0;">
+  <button onclick="showExamAverageChart('total')">5教科合計</button>
+  <button onclick="showExamAverageChart('japanese')">国語</button>
+  <button onclick="showExamAverageChart('math')">数学</button>
+  <button onclick="showExamAverageChart('social')">社会</button>
+  <button onclick="showExamAverageChart('science')">理科</button>
+  <button onclick="showExamAverageChart('english')">英語</button>
+</div>
+<div id="examAverageChart"></div>
+<div id="examAverageTable"></div>
+
+  <h2 id="section-recommend">📋 令和9年度 推薦入学・特色化選抜 実施校一覧</h2>
+<p>福岡県内の公立高校｜推薦・特色化選抜の実施校</p>
+
+<div style="background:#EAF3FF; padding:18px; border-radius:12px; margin:12px 0;">
+  <h3 style="color:#15549A; margin:0 0 10px;">🔵 推薦入学のみ実施</h3>
+  <p style="margin:0;">筑紫丘・福岡中央</p>
+</div>
+
+<div style="background:#FFF1E5; padding:18px; border-radius:12px; margin:12px 0;">
+  <h3 style="color:#A34C0B; margin:0 0 10px;">🟠 特色化選抜のみ実施</h3>
+  <p style="margin:0;">太宰府・早良・博多工業</p>
+</div>
+
+<div style="background:#E8F6EE; padding:18px; border-radius:12px; margin:12px 0;">
+  <h3 style="color:#177445; margin:0 0 10px;">🟢 推薦入学・特色化選抜の両方を実施</h3>
+  <p style="margin:0; line-height:2;">
+    春日・筑紫中央・筑紫・福岡工業・福岡講倫館・柏陵・福岡農業・武蔵台・福翔・福岡共創（旧福岡女子）
+  </p>
+</div>
+
+<div style="background:#FFF8E9; border-left:5px solid #E4A12C; border-radius:10px; padding:15px 18px; margin:18px 0; text-align:left; line-height:1.8;">
+  <strong style="color:#945400;">⚠️ ご注意</strong><br>
+  推薦入学・特色化選抜の出願条件や選考基準は、学校・学科によって異なります。特に特色化選抜では、部活動や生徒会活動などの実績が出願条件に含まれない場合や、対象となる部活動が指定されている場合があります。<br>
+  <strong>詳しい出願資格・選考基準については、<a href="https://www.pref.fukuoka.lg.jp/site/kyouiku/" target="_blank" rel="noopener noreferrer">福岡県教育委員会</a>および各高校の公式資料を必ずご確認ください。</strong>
+</div>
+
+  
+<h2 id="section-guide">📖 はじめての高校入試ガイド</h2>
+<p>福岡県の公立・私立・高専の入試の仕組みを、保護者の方にもわかりやすく解説します。</p>
+
+<!-- 公立高校 -->
+<div style="background:#EAF3FF; padding:22px; border-radius:14px; margin:24px 0; text-align:left;">
+  <h3 style="color:#15549A; margin-top:0;">🏫 ① 公立高校の入試</h3>
+  <p><strong>一般入学者選抜</strong><br>
+  主に中学3年生の内申点（調査書）と、5教科の学力検査によって合否を判定します。</p>
+
+  <p><strong>推薦入学</strong><br>
+  中学校長の推薦を受けて出願する方式。調査書・面接などをもとに選考します。</p>
+
+  <p><strong>特色化選抜</strong><br>
+  高校が定める出願条件を満たす生徒が受験できる方式。調査書・面接などをもとに選考します。</p>
+
+  <div style="background:white; padding:14px; border-radius:10px;">
+    <strong>💡 ポイント</strong><br>
+    推薦入学と特色化選抜は、同じ高校で両方実施していても、両方に出願することはできません。
+    各高校の条件を確認して選びます。
+  </div>
+</div>
+
+<!-- 私立高校 -->
+<div style="background:#FFF1E5; padding:22px; border-radius:14px; margin:24px 0; text-align:left;">
+  <h3 style="color:#A34C0B; margin-top:0;">🎓 ② 私立高校の入試</h3>
+
+  <p><strong>専願入試</strong><br>
+  合格したら原則としてその学校に入学することを前提とした入試です。</p>
+
+  <p><strong>前期入試</strong><br>
+  公立高校との併願を考える生徒も多く受験する入試です。</p>
+
+  <p><strong>後期入試</strong><br>
+  実施する学校・学科が限られる場合があります。募集要項の確認が必要です。</p>
+
+  <div style="background:white; padding:14px; border-radius:10px;">
+    <strong>💡 専願と併願の違い</strong>
+    <p style="margin-bottom:0;">
+      <strong>専願：</strong>合格したら、その学校への入学を前提とします。<br>
+      <strong>併願：</strong>私立高校を受験しながら、公立高校などの合格を目指すことができます。
+    </p>
+  </div>
+  <p style="font-size:13px; margin-bottom:0;">
+    ※試験科目・面接・合格後の手続きや納付金は学校によって異なります。
+  </p>
+</div>
+
+<!-- 公立高校の合否判定 -->
+<div style="background:#E8F6EE; padding:22px; border-radius:14px; margin:24px 0;">
+  <h3 style="color:#177445; margin-top:0;">📊 ③ 公立高校の合否はどう決まる？</h3>
+
+  <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center;">
+    <div style="background:white; padding:16px; border-radius:10px; flex:1; min-width:150px;">
+      <strong style="color:#19569B;">内申点</strong>
+      <div style="font-size:27px; font-weight:bold;">45点</div>
+      <small>中3の9教科×5段階</small>
+    </div>
+    <div style="background:white; padding:16px; border-radius:10px; flex:1; min-width:150px;">
+      <strong style="color:#177445;">学力検査</strong>
+      <div style="font-size:27px; font-weight:bold;">300点</div>
+      <small>5教科×60点</small>
+    </div>
+  </div>
+
+  <p style="font-weight:bold;">↓ それぞれの順位を比較します ↓</p>
+
+  <div style="background:white; border-radius:12px; padding:16px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; max-width:440px; margin:auto;">
+      <div style="background:#CDEDDC; padding:22px 8px; border-radius:8px;">
+        <strong style="color:#176C42;">A群</strong><br>
+        <small>両方の順位が<br>一定の範囲内</small>
+      </div>
+      <div style="background:#EDF1F6; padding:22px 8px; border-radius:8px;">
+        <strong>B群</strong><br>
+        <small>いずれかが<br>範囲外</small>
+      </div>
+      <div style="background:#EDF1F6; padding:22px 8px; border-radius:8px;">
+        <strong>B群</strong><br>
+        <small>いずれかが<br>範囲外</small>
+      </div>
+      <div style="background:#EDF1F6; padding:22px 8px; border-radius:8px;">
+        <strong>B群</strong><br>
+        <small>両方とも<br>範囲外</small>
+      </div>
+    </div>
+    <p style="font-size:12px; color:#666; margin-bottom:0;">
+      ※仕組みを簡略化した模式図です。実際の範囲は高校が定めます。
+    </p>
+  </div>
+
+  <div style="text-align:left; margin-top:16px;">
+    <p><strong style="color:#177445;">● A群</strong><br>
+    調査書などに特に問題がなければ、入学予定者となります。</p>
+    <p><strong>● B群</strong><br>
+    内申点・学力検査の順位・調査書の内容などを総合的に判断して選考します。</p>
+  </div>
+
+  <div style="background:white; padding:14px; border-radius:10px; text-align:left;">
+    <strong>💡 大切なこと</strong><br>
+    内申点45点と入試300点を単純に足して、合計345点で合否を決める仕組みではありません。
+    また、一部の学科・コースでは特定教科を1.5倍して評価する場合があります。
+  </div>
+</div>
+
+<!-- 第2志望校制度 -->
+<div style="background:#F1F6FD; padding:20px; border-radius:14px; margin:24px 0; text-align:left;">
+  <h3 style="color:#19569B; margin-top:0;">🔁 ④ 公立高校の第2志望校制度</h3>
+  <p>令和9年度の県立高校一般入試では、条件を満たす場合、第1志望校とは別に第2志望校を指定できます。<strong>一般入試の出願時に希望</strong>し、合格した場合に入学する意思があることが条件です。</p>
+  <p>県立高校の全日制課程を第1志望とする場合に利用でき、第2志望校は県内全域の対象となる県立高校から選べます。推薦入学・特色化選抜などでは利用できません。</p>
+  <div style="background:white; padding:16px; border-radius:10px; text-align:center; line-height:2; margin:14px 0;">
+    <strong>① 一般入試の出願時に第2志望校を指定</strong><br>
+    ↓<br>
+    <strong>② 第1志望校で学力検査（3月9日）</strong><br>
+    ↓<br>
+    ③ 第1志望校で合否を判定<br>
+    ↓<br>
+    <strong>④ 第1志望校が不合格の場合、第2志望校に欠員があれば選考</strong><br>
+    ↓<br>
+    <strong>⑤ 一般入試の合格発表（3月18日）</strong><br>
+    ↓<br>
+    <strong>⑥ 両校とも不合格の場合、条件を満たせば補充募集へ出願可能</strong>
+  </div>
+  <p>第2志望校のための新たな学力検査や書類提出は不要です。第1志望校で受けた検査結果等を使います。第2志望校を希望しても、第1志望校の合否判定には影響しません。</p>
+  <div style="background:#FFF0E3; border-left:5px solid #D97706; padding:16px; border-radius:10px; margin:16px 0;">
+    <strong style="color:#9A4B05;">⚠️ 補充募集との関係（重要）</strong>
+    <p style="margin:8px 0;">第2志望校の選考結果は一般入試の合格発表で確認します。その後、定員に満たない学校・学科では<strong>補充募集</strong>が行われます。</p>
+    <p style="margin:8px 0;"><strong>第2志望校で合格した人は、補充募集に出願できません。</strong>第1・第2志望校とも不合格の場合は、出願資格を満たせば補充募集を検討できます。</p>
+    <p style="margin:8px 0 0;">令和9年度の補充募集：<strong>出願3月19日～24日正午／面接・作文3月25日／合格発表3月29日</strong>。実施校・募集学科は欠員状況により決まります。</p>
+  </div>
+  <div style="background:#E8F6EE; border-left:5px solid #16804C; padding:16px; border-radius:10px; margin:16px 0;">
+    <strong style="color:#176C42;">📢 繰り上げ合格（追加合格）について</strong>
+    <p style="margin:8px 0;">福岡県教育委員会の公式Q&amp;Aでは、合格発表後にやむを得ない事情による入学辞退者が出た場合、<strong>高校が追加で合格者を出すことがある</strong>と説明されています。</p>
+    <p style="margin:8px 0;">第1志望校・第2志望校のどちらにも合格していない受検生が、いずれかの学校で追加合格となる場合があります。一方、<strong>すでに第1志望校または第2志望校に合格した人は追加合格の対象になりません。</strong></p>
+    <p style="margin:8px 0 0;">※追加合格は必ず行われるものではなく、連絡の時期・方法などは学校や状況によります。補充募集とは別の取り扱いです。</p>
+  </div>
+  <div style="background:white; padding:16px; border-radius:10px;">
+    <strong style="color:#19569B;">❓ よくある質問</strong>
+    <p><strong>Q. 第2志望校を希望すると、第1志望校で不利になりますか？</strong><br>A. なりません。第1志望校の合否が先に決まります。</p>
+    <p><strong>Q. 第2志望校に欠員があれば必ず合格しますか？</strong><br>A. いいえ。欠員がある場合に選考が行われますが、合格が保証されるわけではありません。</p>
+    <p style="margin-bottom:0;"><strong>Q. 第2志望校で合格後、第1志望校から繰り上げ合格の連絡はありますか？</strong><br>A. 公式Q&amp;Aでは、いずれかの学校に合格している人は追加合格の対象にならないとされています。</p>
+  </div>
+  <p style="font-size:13px; color:#52657A; margin-bottom:0;">
+    ※令和9年度の公式案内および福岡県教育委員会の第2志望校制度Q&amp;Aに基づく説明です。詳細は
+    <a href="https://www.pref.fukuoka.lg.jp/site/kyouiku/dainishibou.html" target="_blank" rel="noopener noreferrer">福岡県教育委員会・第2志望校制度</a>と
+    <a href="https://www.pref.fukuoka.lg.jp/site/kyouiku/kennittei.html" target="_blank" rel="noopener noreferrer">令和9年度入試日程</a>をご確認ください。
+  </p>
+</div>
+
+<!-- 高専 -->
+<div style="background:#F0ECFF; padding:22px; border-radius:14px; margin:24px 0; text-align:left;">
+  <h3 style="color:#6944A2; margin-top:0;">🔧 ⑤ 高専3校の入試</h3>
+  <p>高専は、工学やものづくりなどの専門分野を学ぶ、原則5年間の学校です。</p>
+  <p>福岡県内には、久留米・有明・北九州の3校があります。</p>
+
+  <div style="background:white; padding:15px; border-radius:10px; margin:12px 0;">
+    <strong style="color:#6944A2;">久留米工業高等専門学校</strong>
+    <p>推薦選抜：調査書・推薦書・適性検査・面接などを確認。</p>
+    <p style="margin-bottom:0;">学力選抜：教科別の配点・加重は最新の募集要項で確認します。</p>
+  </div>
+
+  <div style="background:white; padding:15px; border-radius:10px; margin:12px 0;">
+    <strong style="color:#6944A2;">有明工業高等専門学校</strong>
+    <p>推薦選抜：調査書・推薦書・面接などを確認。</p>
+    <p style="margin-bottom:0;">学力選抜：教科別の配点・加重は最新の募集要項で確認します。</p>
+  </div>
+
+  <div style="background:white; padding:15px; border-radius:10px; margin:12px 0;">
+    <strong style="color:#6944A2;">北九州工業高等専門学校</strong>
+    <p>推薦選抜：調査書・推薦書・作文・面接などを確認。</p>
+    <p style="margin-bottom:0;">学力選抜：教科別の配点・加重は最新の募集要項で確認します。</p>
+  </div>
+
+  <div style="background:#FFFFFF; padding:14px; border-radius:10px;">
+    <strong>💡 高専入試のポイント</strong><br>
+    推薦に必要な評定や学力検査の加重配点は、3校で同じとは限りません。
+    推薦不合格後に学力選抜を受ける場合も、出願時の手続きに注意が必要です。
+  </div>
+</div>
+
+<!-- 保護者向け -->
+<div style="background:#F4F7FA; padding:22px; border-radius:14px; margin:24px 0; text-align:left;">
+  <h3 style="color:#334155; margin-top:0;">👨‍👩‍👧 ⑥ 保護者の方へ</h3>
+  <p>✅ <strong>内申点は日頃の積み重ね</strong><br>
+  定期考査だけでなく、授業や提出物などにも取り組みましょう。</p>
+  <p>✅ <strong>専願と併願の違いを確認</strong><br>
+  合格後にどの学校へ進学するのか、親子で相談しておきましょう。</p>
+  <p>✅ <strong>入学手続きの期限に注意</strong><br>
+  私立高校などでは、期限までに手続きや納付が必要になる場合があります。</p>
+  <p style="margin-bottom:0;">✅ <strong>迷ったら早めに進路相談</strong><br>
+  志望校の選び方や受験方法は、福岡進学塾でもご相談いただけます。</p>
+</div>
+
+<p style="font-size:12px; color:#666;">
+  ※このガイドは制度の概要です。正式な出願条件・選考方法・加重配点は令和9年度の各学校の募集要項をご確認ください。
+</p>
+<nav class="student-fixed-menu" aria-label="塾生専用ページ内メニュー">
+  <a href="#section-schedule">📅 入試日程</a>
+  <a href="#section-search">🏫 高校検索</a>
+  <a href="#section-fscore">📊 偏差値表</a>
+  <a href="#section-average">📈 平均点</a>
+  <a href="#section-recommend">📋 推薦・特色</a>
+  <a href="#section-guide">📖 入試ガイド</a>
+</nav>
+`;
+      filterSchools("すべて");
+      showFscoreTable();
+      showExamAverageChart();
+    } else {
+      message.textContent = "ユーザー名またはパスワードが違います。";
+    }
+  }
+    // 学校情報（まずは動作確認用の3校）
+const schools = [
+  // 新しいFスコア表（ご提供画像）に掲載された学校・コース
+  {"name":"筑紫丘","type":"公立","score":"F70・F68","course":"理数（F70）／普通（F68）","url":"https://chikushigaoka.fku.ed.jp/"},
+  {"name":"福大付属大濠","type":"私立","score":"F70・F63","course":"スーパー進学（F70）／進学（F63）","url":"https://www.ohori.ed.jp/senior/"},
+  {"name":"九州","type":"私立","score":"F69・F63・F59・F53・F48","course":"スーパー特進（F69）／特別進学（F63）／準特進（F59）／進学（F53）／造形芸術（F48）","url":"https://www.kyushu-h.jp/"},
+  {"name":"東福岡","type":"私立","score":"F67・F64・F63・F60・F53","course":"医進・サイエンス（F67）／国際教養（F64）／国際教養（F63）／文理共創（F60）／フロンティア（F53）","url":"http://www.higashifukuoka.ed.jp/"},
+  {"name":"九産大付属九州産業","type":"私立","score":"F67・F62・F57・F50・F45","course":"スーパー特進（F67）／特進（F62）／準特進（F57）／進学（F50）／創造工学（F45）","url":"https://www.kyusanfukyusan-h.ed.jp/"},
+  {"name":"筑陽","type":"私立","score":"F67・F62・F54・F47","course":"特進S選抜理数・特進S選抜文理（F67）／特別進学S（F62）／特別進学（F54）／進学・デザイン（F47）","url":"http://high.chikuyogakuen.ed.jp/"},
+  {"name":"久留米高専","type":"高専","score":"F66・F65・F64・F63","course":"情報科学科（F66）／生物応用化学・電気電子工学（F65）／機械工学（F64）／材料システム工学（F63）","url":"https://www.kurume-nct.ac.jp/"},
+  {"name":"筑紫女学園","type":"私立","score":"F66・F62・F55","course":"医進S（F66）／Ⅰ類（F62）／Ⅱ類（F55）","url":"https://chikujo.ed.jp/"},
+  {"name":"城東","type":"私立","score":"F66・F62・F57・F53・F46","course":"Ⅰ類特別選抜（F66）／Ⅰ類（F62）／Ⅱ類特別選抜（F57）／Ⅱ類・電気工学・情報工学スペシャリスト（F53）／基礎工学（F46）","url":"https://jyoto.fit.jp/index"},
+  {"name":"城南理数","type":"公立","score":"F65","course":"理数コース（F65）","url":"https://jonan.fku.ed.jp/"},
+  {"name":"西南学院","type":"私立","score":"F65","course":"普通（F65）","url":"https://hs.seinan.ed.jp/senior/"},
+  {"name":"中村学園高等学校","type":"私立","score":"F65・F59・F55","course":"アカデミックAクラス（F65）／アカデミックBクラス（F59）／アクティブクラス（F55）","url":"https://www.nakamura-njh.ed.jp/senior/education/index.html"},
+  {"name":"春日","type":"公立","score":"F63","course":"普通（F63）","url":"https://kasuga.fku.ed.jp/"},
+  {"name":"北九州高専","type":"高専","score":"F61","course":"生産デザイン工学（F61）","url":"https://www.kct.ac.jp/"},
+  {"name":"福大付属若葉","type":"私立","score":"F61・F58・F56","course":"スーパー特進（F61）／グローバル（F58）／高大一貫（F56）","url":"https://www.f-wakaba.ed.jp/"},
+  {"name":"有明高専","type":"高専","score":"F60","course":"創造工学（F60）","url":"https://www.ariake-nct.ac.jp/"},
+  {"name":"筑紫中央","type":"公立","score":"F60","course":"普通（F60）","url":"https://chikushichuo.fku.ed.jp/"},
+  {"name":"福岡中央","type":"公立","score":"F58","course":"普通（F58）","url":"https://fchs.fku.ed.jp/"},
+  {"name":"筑紫台","type":"私立","score":"F58・F53・F44・F43","course":"アドバンス（F58）／特別進学（F53）／進学・総合学科（F44）／工業技術（F43）","url":"https://chikushidai.ed.jp/"},
+  {"name":"福岡雙葉","type":"私立","score":"F57・F50","course":"スーパー特進・医進サイエンス・グローバルリーダー（F57）／みらい共創（F50）","url":"https://www.fukuokafutaba.ed.jp/highschool/"},
+  {"name":"福岡女学院","type":"私立","score":"F56・F48","course":"特進（F56）／進学・音楽（F48）","url":"https://www0.fukujo.ac.jp/js/"},
+  {"name":"筑紫","type":"公立","score":"F55","course":"普通（F55）","url":"https://chikushi.fku.ed.jp/"},
+  {"name":"福翔","type":"公立","score":"F55","course":"総合（F55）","url":"https://www.fukusho.ed.jp/"},
+  {"name":"福岡工業","type":"公立","score":"F53・F52・F51・F50・F49・F47","course":"工業進学（F53）／建築（F52）／機械工学（F51）／電気工学・電子情報工学・機械工学（F50）／都市工学（F49）／環境化学・染織デザイン（F47）","url":"https://fths.fku.ed.jp/"},
+  {"name":"香椎工業","type":"公立","score":"F52・F48・F47・F44","course":"情報技術（F52）／電子機械（F48）／機械（F47）／工業化学・電気（F44）","url":"https://kashii-tech.fku.ed.jp/"},
+  {"name":"福岡海星女子学院","type":"私立","score":"F52・F46・F43","course":"グローバル特進（F52）／国際教養（F46）／進学（F43）","url":"https://www.f-kaisei.ed.jp/senior/"},
+  {"name":"博多","type":"私立","score":"F51・F50・F46・F42","course":"特進シリウス（F51）／看護（F50）／特進ドリーム・進学（F46）／キャリアデザイン（F42）","url":"https://hakata.ed.jp/highschool/"},
+  {"name":"博多女子","type":"私立","score":"F51・F44","course":"特別進学（F51）／普通進学・スーパーライセンス・トータルビジネス（F44）","url":"https://www.ghakata.ac.jp/sh/"},
+  {"name":"香椎ファッションデザイン","type":"公立","score":"F50","course":"ファッションデザイン（F50）","url":"https://kashii.fku.ed.jp/"},
+  {"name":"福岡常葉","type":"私立","score":"F50・F42・F40・F39","course":"特別進学（F50）／情報処理（F42）／ベーシックビューティー（F40）／進学（F39）","url":"https://ssl.f-joyo.ed.jp/"},
+  {"name":"福岡第一","type":"私立","score":"F50・F37","course":"国際（F50）／国公立大学進学・普通・アスリート特進・製菓・音楽・ソーシャル心理・AI・機械・航空・自動車メカニック・建築デザイン・コンピュータAI・デザイン・マンガアニメーション・ドローンパイロット（F37）","url":"https://f.f-parama.ed.jp/"},
+  {"name":"精華女子","type":"私立","score":"F50・F47・F42","course":"特別進学（F50）／看護（F47）／進学・普通ドリカム・保育福祉・食物調理・製菓（F42）","url":"https://www.seika-ghs.ed.jp/"},
+  {"name":"博多青松","type":"公立","score":"F49・F47","course":"普通（F49）／情報科学（F47）","url":"https://seisho.fku.ed.jp/"},
+  {"name":"武蔵台","type":"公立","score":"F49","course":"普通（F49）","url":"https://musashidai.fku.ed.jp/"},
+  {"name":"柏陵","type":"公立","score":"F46","course":"普通・環境科学（F46）","url":"https://hakuryo.fku.ed.jp/"},
+  {"name":"太宰府","type":"公立","score":"F46・F41","course":"芸術（F46）／普通（F41）","url":"https://dazaifu.fku.ed.jp/"},
+  {"name":"福岡農業","type":"公立","score":"F46・F44・F42","course":"食品科学（F46）／環境活用・生活デザイン（F44）／都市園芸（F42）","url":"https://fukuoka-agr.fku.ed.jp/"},
+  {"name":"博多工業","type":"公立","score":"F46","course":"工業（F46）","url":"https://www.hakatath.ed.jp/"},
+  {"name":"福岡女子商業","type":"私立","score":"F46","course":"特進・ビジネスアクション・デジタルフロンティア（F46）","url":"https://yashima.ac.jp/fgchs/"},
+  {"name":"福岡講倫館","type":"公立","score":"F45","course":"総合学科（F45）","url":"https://kourin.fku.ed.jp/"},
+  {"name":"純真","type":"私立","score":"F43","course":"共創・進学・キャリア探究・デジタル探究（F43）","url":"https://junshin-hs.ed.jp/"},
+  {"name":"沖学園","type":"私立","score":"F40・F39","course":"隆徳館・文理進学・キャリア教育・グローバルコミュニケーション・アスリート（F40）／社会総合学科（F39）","url":"https://oki.ed.jp/"},
+  {"name":"水産","type":"公立","score":"F37","course":"海洋・食品流通・アクアライフ（F37）","url":"https://suisan.fku.ed.jp/"},
+  {"name":"第一薬科大付属","type":"私立","score":"F37","course":"芸能・保育・動物愛育・ハイフレックス普通・スポーツマネジメント・食マネジメント・コスメティックマネジメント（F37）","url":"https://d.f-parama.ed.jp/"},
+  {"name":"福岡共創","type":"公立","score":"F46","course":"総合学科（F46）","url":"https://fukujohs.ed.jp/"}
+];
+// Fスコア一覧表（令和8年10月更新）
+function showFscoreTable() {
+  const area = document.getElementById("fscoreTable");
+  if (!area) return;
+
+  let html = `
+    <div style="overflow-x:auto; margin:20px 0;">
+      <table style="width:100%; border-collapse:collapse; text-align:left;">
+      <colgroup>
+  <col style="width:40%;">
+  <col style="width:8%;">
+  <col style="width:52%;">
+</colgroup>
+        <thead>
+          <tr style="background:#EAF3FF;">
+            <th style="padding:12px; border:1px solid #ddd; color:#23845A;">公立高校・高専</th>
+            <th style="padding:12px; border:1px solid #ddd; text-align:center;">Fスコア</th>
+            <th style="padding:12px; border:1px solid #ddd; color:#19569B;">私立高校</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
+// Fスコア別の学校情報（令和8年10月更新）
+const fscoreData = {
+  70: { public: "筑紫丘（理数）", private: "福大付属大濠（スーパー進学）" },
+  69: { public: "", private: "九産大付属九州（スーパー特進）" },
+  68: { public: "筑紫丘（普通）", private: "" },
+  67: { public: "", private: "東福岡（医進・サイエンス）／九産大付属九州産業（スーパー特進）／筑陽学園（特進S選抜理数・特進S選抜文理）" },
+  66: { public: "久留米高専（情報科学科）", private: "筑紫女学園（医進S）／城東（Ⅰ類特別選抜）" },
+  65: { public: "久留米高専（生物応用化学・電気電子工学）／城南（理数コース）", private: "西南学院（普通）／中村学園（アカデミックAクラス）" },
+  64: { public: "久留米高専（機械工学）", private: "東福岡（国際教養）" },
+  63: { public: "久留米高専（材料システム工学）／春日（普通）", private: "福大付属大濠（進学）／九産大付属九州（特別進学）／東福岡（国際教養）" },
+  62: { public: "", private: "九産大付属九州産業（特進）／筑陽学園（特別進学S）／筑紫女学園（Ⅰ類）／城東（Ⅰ類）" },
+  61: { public: "北九州高専（生産デザイン工学）", private: "福大付属若葉（スーパー特進）" },
+  60: { public: "有明高専（創造工学）／筑紫中央（普通）", private: "東福岡（文理共創）" },
+  59: { public: "", private: "九産大付属九州（準特進）／中村学園（アカデミックBクラス）" },
+  58: { public: "福岡中央（普通）", private: "福大付属若葉（グローバル）／筑紫台（アドバンス）" },
+  57: { public: "", private: "九産大付属九州産業（準特進）／城東（Ⅱ類特別選抜）／福岡雙葉（スーパー特進・医進サイエンス・グローバルリーダー）" },
+  56: { public: "", private: "福大付属若葉（高大一貫）／福岡女学院（特進）" },
+  55: { public: "筑紫（普通）／福翔（総合）", private: "筑紫女学園（Ⅱ類）／中村学園（アクティブクラス）" },
+  54: { public: "", private: "筑陽学園（特別進学）" },
+  53: { public: "福岡工業（工業進学）", private: "東福岡（フロンティア）／筑紫台（特別進学）／九産大付属九州（進学）／城東（Ⅱ類・電気工学・情報工学スペシャリスト）" },
+  52: { public: "福岡工業（建築）／香椎工業（情報技術）", private: "福岡海星女子学院（グローバル特進）" },
+  51: { public: "福岡工業（機械工学）", private: "博多（特進シリウス）／博多女子（特別進学）" },
+  50: { public: "福岡工業（電気工学・電子情報工学・機械工学）／香椎（ファッションデザイン）", private: "九産大付属九州産業（進学）／福岡雙葉（みらい共創）／博多（看護）／福岡常葉（特別進学）／福岡第一（国際）／精華女子（特別進学）" },
+  49: { public: "博多青松（普通）／武蔵台（普通）／福岡工業（都市工学）", private: "" },
+  48: { public: "香椎工業（電子機械）", private: "九産大付属九州（造形芸術）／福岡女学院（進学・音楽）" },
+  47: { public: "福岡工業（環境化学・染織デザイン）／香椎工業（機械）／博多青松（情報科学）", private: "筑陽学園（進学・デザイン）／精華女子（看護）" },
+  46: { public: "柏陵（普通・環境科学）／太宰府（芸術）／福岡農業（食品科学）／博多工業（工業）／福岡共創（総合学科）", private: "福岡女子商業（特進・ビジネスアクション・デジタルフロンティア）／福岡海星女子学院（国際教養）／博多（特進ドリーム・進学）／城東（基礎工学）" },
+  45: { public: "福岡講倫館（総合学科）", private: "九産大付属九州産業（創造工学）" },
+  44: { public: "福岡農業（環境活用・生活デザイン）／香椎工業（工業化学・電気）", private: "筑紫台（進学・総合学科）／博多女子（普通進学・スーパーライセンス・トータルビジネス）" },
+  43: { public: "", private: "筑紫台（工業技術）／福岡海星女子学院（進学）／純真（共創・進学・キャリア探究・デジタル探究）" },
+  42: { public: "福岡農業（都市園芸）", private: "精華女子（進学・普通ドリカム・保育福祉・食物調理・製菓）／博多（キャリアデザイン）／福岡常葉（情報処理）" },
+  41: { public: "太宰府（普通）", private: "" },
+  40: { public: "", private: "福岡常葉（ベーシックビューティー）／沖学園（隆徳館・文理進学・キャリア教育・グローバルコミュニケーション・アスリート）" },
+  39: { public: "", private: "沖学園（社会総合学科）／福岡常葉（進学）" },
+  38: { public: "", private: "" },
+  37: { public: "水産（海洋・食品流通・アクアライフ）", private: "福岡第一（国公立大学進学・普通・アスリート特進・製菓・音楽・ソーシャル心理・AI・機械・航空・自動車メカニック・建築デザイン・コンピュータAI・デザイン・マンガアニメーション・ドローンパイロット）／第一薬科大付属（芸能・保育・動物愛育・ハイフレックス普通・スポーツマネジメント・食マネジメント・コスメティックマネジメント）" }
+};
+  // 学校名だけを色付き・太字にする
+function colorSchoolNames(text, color) {
+  if (!text) return "";
+
+  return text.split("／").map(item => {
+    const match = item.trim().match(/^(.+?)(\s*[（(].*)$/);
+    if (!match) return item;
+
+    const schoolName = match[1];
+    const course = match[2];
+
+    const isKosen = /久留米高専|北九州高専|有明高専/.test(schoolName);
+    const nameColor = isKosen ? "#E67E22" : color;
+
+    return `<strong style="color:${nameColor};">${schoolName}</strong>${course}`;
+  }).join("<br>");
+}
+  for (let score = 70; score >= 37; score--) {
+    html += `
+      <tr>
+        <td style="padding:12px; border:1px solid #ddd; text-align:left;">${colorSchoolNames(fscoreData[score]?.public || "", "#16803C")}</td>
+<td style="padding:12px; border:1px solid #ddd; text-align:center; font-weight:bold;">${score}</td>
+<td style="padding:12px; border:1px solid #ddd; text-align:left;">${colorSchoolNames(fscoreData[score]?.private || "", "#164A8A")}</td>
+      </tr>
+    `;
+  }
+
+  html += `
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  area.innerHTML = html;
+}
+    // 福岡県公立高校入試・平均点推移
+// 平成21年度〜令和8年度
+// ここから平均点グラフを作成
+    const examAverageData = [
+  { year:"H21", japanese:33, math:35, social:37, science:38, english:33, total:175 },
+  { year:"H22", japanese:36, math:36, social:33, science:34, english:36, total:175 },
+  { year:"H23", japanese:34, math:34, social:31, science:35, english:31, total:164 },
+  { year:"H24", japanese:31, math:30, social:30, science:38, english:28, total:158 },
+  { year:"H25", japanese:32, math:31, social:34, science:30, english:30, total:156 },
+  { year:"H26", japanese:34, math:27, social:33, science:25, english:31, total:150 },
+  { year:"H27", japanese:36, math:34, social:35, science:33, english:31, total:168 },
+  { year:"H28", japanese:39, math:29, social:31, science:37, english:30, total:165 },
+  { year:"H29", japanese:39, math:33, social:31, science:32, english:29, total:164 },
+  { year:"H30", japanese:33, math:31, social:30, science:32, english:32, total:161 },
+  { year:"H31", japanese:39, math:32, social:38, science:32, english:34, total:175 },
+  { year:"R2", japanese:36, math:33, social:29, science:32, english:33, total:163 },
+  { year:"R3", japanese:39, math:29, social:35, science:36, english:35, total:174 },
+  { year:"R4", japanese:36, math:32, social:33, science:37, english:34, total:172 },
+  { year:"R5", japanese:31, math:30, social:33, science:38, english:34, total:165 },
+  { year:"R6", japanese:39, math:32, social:36, science:38, english:37, total:181 },
+  { year:"R7", japanese:37, math:28, social:34, science:29, english:31, total:159 },
+  { year:"R8", japanese:43, math:31, social:32, science:31, english:31, total:168 }
+];
+    function showExamAverageChart(subject = "total") {
+  const area = document.getElementById("examAverageChart");
+  if (!area) return;
+// 選択中の科目ボタンだけ色を変える
+const subjects = ["total", "japanese", "math", "social", "science", "english"];
+
+document.querySelectorAll(".average-buttons button").forEach((button, index) => {
+  button.classList.toggle("active", subjects[index] === subject);
+});
+  const width = 900;
+  const height = 300;
+  const left = 55;
+  const right = 20;
+  const top = 35;
+  const bottom = 55;
+
+  const minScore = subject === "total" ? 140 : 20;
+const maxScore = subject === "total" ? 190 : 50;
+
+  const x = i => left + i * (width - left - right) / (examAverageData.length - 1);
+  const y = score => top + (maxScore - score) * (height - top - bottom) / (maxScore - minScore);
+
+  const points = examAverageData
+    .map((d, i) => `${x(i)},${y(d[subject])}`)
+    .join(" ");
+
+  let svg = `<svg viewBox="0 0 ${width} ${height}"
+    style="width:100%;height:auto;display:block;"
+    role="img" aria-label="公立高校入試の5教科合計平均点の推移">`;
+
+  for (let score = minScore; score <= maxScore; score += 10) {
+    svg += `
+      <line x1="${left}" y1="${y(score)}" x2="${width-right}" y2="${y(score)}"
+        stroke="#DCE6F2" stroke-width="1"/>
+      <text x="${left-12}" y="${y(score)+5}" text-anchor="end"
+        fill="#52657A" font-size="14">${score}</text>
+    `;
+  }
+
+  svg += `<polyline points="${points}" fill="none"
+    stroke="#1976D2" stroke-width="3" stroke-linejoin="round"/>`;
+
+  examAverageData.forEach((d, i) => {
+    svg += `
+      <circle cx="${x(i)}" cy="${y(d[subject])}" r="5" fill="#1976D2"/>
+<text x="${x(i)}" y="${y(d[subject])-11}" text-anchor="middle"
+  font-size="12" fill="#164A8A">${d[subject]}</text>
+      <text x="${x(i)}" y="${height-20}" text-anchor="middle"
+        font-size="12" fill="#52657A">${d.year}</text>
+    `;
+  });
+
+  svg += "</svg>";
+
+  area.innerHTML = `
+    <div style="background:#F3F8FF;padding:18px;border-radius:12px;margin:20px 0;">
+      <h3 style="text-align:center;color:#164A8A;">${subject === "total" ? "5教科合計" : {
+  japanese: "国語",
+  math: "数学",
+  social: "社会",
+  science: "理科",
+  english: "英語"
+}[subject]}の平均点推移</h3>
+      ${svg}
+    </div>
+  `;
+}
+// 学校名で検索する機能
+    let selectedSchoolType = "すべて";
+
+function filterSchools(type) {
+  selectedSchoolType = type;
+  searchSchools();
+
+  document.querySelectorAll('.school-search button').forEach(button => {
+    const isSelected = button.textContent.trim() === type;
+
+    button.style.backgroundColor = isSelected ? '#19569B' : '#EAF3FF';
+    button.style.color = isSelected ? '#FFFFFF' : '#19569B';
+    button.style.border = isSelected ? '2px solid #19569B' : '2px solid #C5DDF5';
+  });
+}
+function searchSchools() {
+  const input = document.getElementById("schoolKeyword");
+  const results = document.getElementById("schoolResults");
+
+  if (!input || !results) return;
+
+  const keyword = input.value.trim();
+ const filtered = schools.filter(school =>
+  school.name.includes(keyword) &&
+  (selectedSchoolType === "すべて" || school.type === selectedSchoolType)
+);
+
+  if (filtered.length === 0) {
+    results.innerHTML = "<p>該当する学校がありません。</p>";
+    return;
+  }
+
+  results.innerHTML = filtered.map(school => `
+    <div style="padding:15px; border-bottom:1px solid #ddd; text-align:left;">
+      <a href="${school.url}" target="_blank" rel="noopener noreferrer">
+        ${school.name}
+      </a>
+      <span>（${school.type}・${school.score}）</span>
+      <p style="margin:8px 0 0; color:#555; font-size:14px;">📚 学科・コース：${school.course}</p>
+    </div>
+  `).join("");
+}
+</script>
+
+</body>
+</html>
