@@ -208,6 +208,35 @@ html {
     padding-bottom: 150px;
   }
 }
+
+/* 入試カウントダウン */
+.countdown-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:0 0 36px}
+.countdown-card{min-width:0;background:#fff;border:2px solid #dbe8f7;border-top:6px solid var(--accent);border-radius:16px;padding:20px 12px 18px;text-align:center;box-shadow:0 5px 16px rgba(14,57,103,.07)}
+.countdown-card h3{font-size:16px;line-height:1.5;color:#193e66;margin:0 0 7px;min-height:48px;display:flex;align-items:center;justify-content:center}
+.countdown-date{color:#52657b;font-size:14px;margin:0 0 16px}
+.countdown-digits{display:flex;justify-content:center;gap:5px;margin:0 auto 12px}
+.countdown-digit{position:relative;display:flex;align-items:center;justify-content:center;width:48px;height:68px;border-radius:6px;background:linear-gradient(#15283f 0%,#15283f 49%,#071321 50%,#0e2136 100%);color:#fff;font-family:Arial,sans-serif;font-size:44px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;text-shadow:0 2px 2px #0009;box-shadow:inset 0 2px 3px #ffffff2b,0 4px 0 #071321,0 5px 9px #0003}
+.countdown-digit::after{content:'';position:absolute;top:50%;left:0;right:0;border-top:2px solid #0009;box-shadow:0 1px #ffffff25}
+.countdown-remaining{font-size:15px;font-weight:bold;color:var(--accent)}
+.countdown-status{font-size:19px;font-weight:bold;color:var(--accent);padding:22px 0}
+
+
+/* パタパタ式：パソコン5列・スマートフォン自動調整 */
+.countdown-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.countdown-grid .countdown-card{padding:16px 5px 15px}
+.countdown-grid .countdown-card h3{font-size:13px;min-height:48px;line-height:1.45}
+.countdown-grid .countdown-date{font-size:12px;margin-bottom:14px}
+.countdown-grid .countdown-digits{gap:3px}
+.countdown-grid .countdown-digit{width:clamp(22px,3.3vw,40px);height:clamp(40px,5vw,60px);font-size:clamp(25px,3.5vw,39px)}
+.countdown-grid .countdown-remaining{font-size:13px}
+@media(max-width:800px){
+  .countdown-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .countdown-grid .countdown-card h3{font-size:14px}
+  .countdown-grid .countdown-digit{width:40px;height:60px;font-size:38px}
+}
+@media(max-width:390px){
+  .countdown-grid{grid-template-columns:1fr}
+}
   </style>
 </head>
 <body>
@@ -272,6 +301,11 @@ html {
     <p><strong style="color:#19569B;">一般入試</strong>（3校共通）：2月14日（日）</p>
   </div>
 </div>
+
+
+  <!-- 入試カウントダウン -->
+  <h2 id="section-countdown">🏓 入試までのカウントダウン</h2>
+  <div id="countdownGrid" class="countdown-grid" aria-label="入試までの残り日数"></div>
 
   <h2 id="section-search">🏫 高校検索・学校情報</h2>
 <p>学校名を入力すると、該当する高校を探せます。</p>
@@ -552,6 +586,7 @@ html {
       filterSchools("すべて");
       showFscoreTable();
       showExamAverageChart();
+      updateCountdown();
     } else {
       message.textContent = "ユーザー名またはパスワードが違います。";
     }
@@ -831,6 +866,36 @@ function searchSchools() {
     </div>
   `).join("");
 }
+// 入試カウントダウン（日本時間基準）
+const countdownExams = [
+  {title:'私立高校 専願入試',date:'2027-01-26',label:'1月26日（火）',accent:'#7a4ca7'},
+  {title:'公立高校<br>推薦・特色化選抜',date:'2027-02-02',label:'2月2日（火）',accent:'#16845b'},
+  {title:'私立高校 前期入試',date:'2027-02-12',label:'2月12日（金）',accent:'#196bb3'},
+  {title:'高専 一般入試',date:'2027-02-14',label:'2月14日（日）',accent:'#cf7619'},
+  {title:'公立高校 一般入試',date:'2027-03-09',label:'3月9日（火）',accent:'#c84a52'}
+];
+function japanDateParts(){
+  const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  const get=t=>Number(parts.find(p=>p.type===t).value);
+  return {year:get('year'),month:get('month'),day:get('day')};
+}
+function updateCountdown(){
+  const grid=document.getElementById('countdownGrid');
+  if(!grid)return;
+  const today=japanDateParts();
+  const todayUTC=Date.UTC(today.year,today.month-1,today.day);
+  grid.innerHTML=countdownExams.map(exam=>{
+    const [year,month,day]=exam.date.split('-').map(Number);
+    const days=Math.round((Date.UTC(year,month-1,day)-todayUTC)/86400000);
+    const display=days>0
+      ? `<div class="countdown-digits" aria-label="残り${days}日">${String(days).padStart(3,'0').split('').map(n=>`<span class="countdown-digit">${n}</span>`).join('')}</div><div class="countdown-remaining">あと ${days} 日</div>`
+      : `<div class="countdown-status">${days===0?'本日が入試日！':'終了しました'}</div>`;
+    return `<article class="countdown-card" style="--accent:${exam.accent}"><h3>${exam.title}</h3><p class="countdown-date">${exam.label}</p>${display}</article>`;
+  }).join('');
+}
+// ページを開いたままでも日付が変わったら更新
+setInterval(updateCountdown,60000);
+
 </script>
 
 </body>
