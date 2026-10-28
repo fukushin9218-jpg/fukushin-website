@@ -302,7 +302,7 @@ html {
   実際の入試結果を保証するものではありませんので、志望校選びの参考としてご覧ください。
 </p>
 
-<p>令和8年6月更新｜福岡進学塾</p>
+<p>令和8年10月更新｜福岡進学塾</p>
 <div id="fscoreTable"></div>
 
   <h2 id="section-average">📈 福岡県公立高校入試・平均点の推移</h2>
@@ -558,59 +558,54 @@ html {
   }
     // 学校情報（まずは動作確認用の3校）
 const schools = [
-  // 公立・県立・市立高校
-  {name:"筑紫丘",type:"公立",score:"F68・70",course:"普通・理数",url:"https://chikushigaoka.fku.ed.jp/"},
-  {name:"城南理数",type:"公立",score:"F65",course:"理数",url:"https://jonan.fku.ed.jp/"},
-  {name:"春日",type:"公立",score:"F63",course:"普通",url:"https://kasuga.fku.ed.jp/"},
-  {name:"福岡中央",type:"公立",score:"F59",course:"普通",url:"https://fchs.fku.ed.jp/"},
-  {name:"筑紫中央",type:"公立",score:"F60",course:"普通",url:"https://chikushichuo.fku.ed.jp/"},
-  {name:"筑紫",type:"公立",score:"F56",course:"普通",url:"https://chikushi.fku.ed.jp/"},
-  {name:"福岡工業",type:"公立",score:"F49・49・51・52・52・53・54・56",course:"環境科学・染色デザイン・都市工学・建築・電気工学・電子情報工学・機械工学・工業進学",url:"https://fths.fku.ed.jp/"},
-  {name:"香椎工業",type:"公立",score:"F44・45・48・48・52",course:"工業化学・電気・電子機械・機械・情報技術",url:"https://kashii-tech.fku.ed.jp/"},
-  {name:"福翔",type:"公立",score:"F55",course:"総合学科",url:"https://www.fukusho.ed.jp/"},
-  {name:"博多青松",type:"公立",score:"F48・51",course:"情報科学・普通（単位制）",url:"https://seisho.fku.ed.jp/"},
-  {name:"武蔵台",type:"公立",score:"F50",course:"普通",url:"https://musashidai.fku.ed.jp/"},
-  {name:"香椎ファッションデザイン",type:"公立",score:"F50",course:"ファッションデザイン",url:"https://kashii.fku.ed.jp/"},
-  {name:"博多工業",type:"公立",score:"F44・45・46・46・47・48",course:"機械・画像工学・電子情報・自動車工学・インテリア・建築",url:"https://www.hakatath.ed.jp/"},
-  {name:"福岡女子",type:"公立",score:"F44・44・45・45・46・49",course:"普通・服飾デザイン・生活情報・保育福祉・国際教養・食物調理",url:"https://fukujohs.ed.jp/"},
-  {name:"福岡講倫館",type:"公立",score:"F46",course:"総合学科",url:"https://kourin.fku.ed.jp/"},
-  {name:"柏陵",type:"公立",score:"F47",course:"普通・環境科学コース",url:"https://hakuryo.fku.ed.jp/"},
-  {name:"太宰府",type:"公立",score:"F42・47",course:"普通・芸術",url:"https://dazaifu.fku.ed.jp/"},
-  {name:"福岡農業",type:"公立",score:"F42・45・45・47",course:"都市園芸・環境活用・生活デザイン・食品科学",url:"https://fukuoka-agr.fku.ed.jp/"},
-  {name:"早良スポーツコミュニケーション",type:"公立",score:"F37",course:"スポーツコミュニケーション",url:"https://sawara.fku.ed.jp/"},
-  {name:"水産",type:"公立",score:"F37",course:"海洋・食品流通・アクアライフ",url:"https://suisan.fku.ed.jp/"},
-
-  // 私立高校
-  {name:"福大付属大濠",type:"私立",score:"F63・70",course:"進学・S進学",url:"https://www.ohori.ed.jp/senior/"},
-  {name:"九州",type:"私立",score:"F48・53・59・63・69",course:"造形芸術・進学・準特進・特進・S特進",url:"https://www.kyushu-h.jp/"},
-  {name:"筑陽",type:"私立",score:"F47・47・54・62・67・67",course:"デザイン・進学・特進・特進S・特進S選抜文理・特進S選抜理数",url:"http://high.chikuyogakuen.ed.jp/"},
-  {name:"九産大付属九州産業",type:"私立",score:"F45・50・57・62・67",course:"創造工学・進学・準特進・特進・スーパー特進",url:"https://www.kyusanfukyusan-h.ed.jp/"},
-  {name:"筑紫女学園",type:"私立",score:"F56・63・66",course:"Ⅱ類・Ⅰ類・医進サイエンス（通信制あり）",url:"https://chikujo.ed.jp/"},
-  {name:"城東",type:"私立",score:"F45・53・53・53・57・61・66",course:"基礎工学・電気工学スペシャリスト・情報工学スペシャリスト・Ⅱ類・Ⅱ類特別選抜・Ⅰ類・Ⅰ類特別選抜",url:"https://jyoto.fit.jp/index"},
-  {name:"西南学院",type:"私立",score:"F65",course:"普通",url:"https://hs.seinan.ed.jp/senior/"},
-  {name:"中村学園高等学校",type:"私立",score:"F50・58・65",course:"アクティブ・アカデミックB・アカデミックA（2026年度から共学）",url:"https://www.nakamura-njh.ed.jp/senior/education/index.html"},
-  {name:"東福岡",type:"私立",score:"F53・60・63・67",course:"フロンティア・文理共創・国際教養・医進サイエンス",url:"http://www.higashifukuoka.ed.jp/"},
-  {name:"福大付属若葉",type:"私立",score:"F56・58・61",course:"高大一貫・グローバル・S特進",url:"https://www.f-wakaba.ed.jp/"},
-  {name:"筑紫台",type:"私立",score:"F43・44・44・53・59",course:"工業技術・総合学科・進学・特進・アドバンス（2027年度から普通科情報コース募集停止）",url:"https://chikushidai.ed.jp/"},
-  {name:"福岡雙葉",type:"私立",score:"F50・59・59・59",course:"進学・特進・グローバルリーダー・医進サイエンス",url:"https://www.fukuokafutaba.ed.jp/highschool/"},
-  {name:"福岡女学院",type:"私立",score:"F48・48・48・56",course:"響創・演奏家・進学・特進",url:"https://www0.fukujo.ac.jp/js/"},
-  {name:"博多女子",type:"私立",score:"F44・44・44・53",course:"普通進学・トータルビジネス・スーパーライセンス・特進",url:"https://www.ghakata.ac.jp/sh/"},
-  {name:"福岡海星女子学院",type:"私立",score:"F42・43・47・53",course:"ブライト・進学・国際教養・グローバル特進（通信制あり）",url:"https://www.f-kaisei.ed.jp/senior/"},
-  {name:"精華女子",type:"私立",score:"F42・42・42・42・42・47・52",course:"進学・普通・保育福祉・食物調理・製菓・看護・特進",url:"https://www.seika-ghs.ed.jp/"},
-  {name:"博多",type:"私立",score:"F42・46・46・50・51",course:"キャリアデザイン・進学・特進ドリーム・看護・特進シリウス",url:"https://hakata.ed.jp/highschool/"},
-  {name:"福岡常葉",type:"私立",score:"F39・40・42・50",course:"進学・ベーシックビューティー・情報処理・特進",url:"https://ssl.f-joyo.ed.jp/"},
-  {name:"福岡第一",type:"私立",score:"国際F50・他F37",course:"普通・音楽・ソーシャル心理・自動車メカニック・コンピュータAI・建築デザイン・マンガ・デザイン・航空・機械・製菓・アスリート特進・国公立大学進学・国際・ドローンパイロット",url:"https://f.f-parama.ed.jp/"},
-  {name:"福岡女子商業",type:"私立",score:"F47",course:"ビジネスアクション・デジタルフロンティア・特進（商業科）",url:"https://yashima.ac.jp/fgchs/"},
-  {name:"純真",type:"私立",score:"F43",course:"普通・進学・共創・キャリア探究",url:"https://junshin-hs.ed.jp/"},
-  {name:"沖学園",type:"私立",score:"F39・",course:"社会総合学科・アスリート・グローバルコミュニケーション・キャリア教育・文理進学・隆徳館（通信制あり）",url:"https://oki.ed.jp/"},
-  {name:"第一薬科大付属",type:"私立",score:"F37",course:"医療系特進・普通・芸能・ビジネス・食ビジネス・ビューティービジネス・保育・動物愛育・ハイレックス普通・スポーツマネジメント・食マネジメント・コスメティックマネジメント",url:"https://d.f-parama.ed.jp/"},
-
-  // 高専
-  {name:"久留米高専",type:"高専",score:"F63・64・65・65・66",course:"材料システム工学・機械工学・電気電子工学・生物応用化学・情報科学",url:"https://www.kurume-nct.ac.jp/"},
-  {name:"北九州高専",type:"高専",score:"F61",course:"生産デザイン工学",url:"https://www.kct.ac.jp/"},
-  {name:"有明高専",type:"高専",score:"F60",course:"創造工学",url:"https://www.ariake-nct.ac.jp/"}
+  // 新しいFスコア表（ご提供画像）に掲載された学校・コース
+  {"name":"筑紫丘","type":"公立","score":"F70・F68","course":"理数（F70）／普通（F68）","url":"https://chikushigaoka.fku.ed.jp/"},
+  {"name":"福大付属大濠","type":"私立","score":"F70・F63","course":"スーパー進学（F70）／進学（F63）","url":"https://www.ohori.ed.jp/senior/"},
+  {"name":"九州","type":"私立","score":"F69・F63・F59・F53・F48","course":"スーパー特進（F69）／特別進学（F63）／準特進（F59）／進学（F53）／造形芸術（F48）","url":"https://www.kyushu-h.jp/"},
+  {"name":"東福岡","type":"私立","score":"F67・F64・F63・F60・F53","course":"医進・サイエンス（F67）／国際教養（F64）／国際教養（F63）／文理共創（F60）／フロンティア（F53）","url":"http://www.higashifukuoka.ed.jp/"},
+  {"name":"九産大付属九州産業","type":"私立","score":"F67・F62・F57・F50・F45","course":"スーパー特進（F67）／特進（F62）／準特進（F57）／進学（F50）／創造工学（F45）","url":"https://www.kyusanfukyusan-h.ed.jp/"},
+  {"name":"筑陽","type":"私立","score":"F67・F62・F54・F47","course":"特進S選抜理数・特進S選抜文理（F67）／特別進学S（F62）／特別進学（F54）／進学・デザイン（F47）","url":"http://high.chikuyogakuen.ed.jp/"},
+  {"name":"久留米高専","type":"高専","score":"F66・F65・F64・F63","course":"情報科学科（F66）／生物応用化学・電気電子工学（F65）／機械工学（F64）／材料システム工学（F63）","url":"https://www.kurume-nct.ac.jp/"},
+  {"name":"筑紫女学園","type":"私立","score":"F66・F62・F55","course":"医進S（F66）／Ⅰ類（F62）／Ⅱ類（F55）","url":"https://chikujo.ed.jp/"},
+  {"name":"城東","type":"私立","score":"F66・F62・F57・F53・F46","course":"Ⅰ類特別選抜（F66）／Ⅰ類（F62）／Ⅱ類特別選抜（F57）／Ⅱ類・電気工学・情報工学スペシャリスト（F53）／基礎工学（F46）","url":"https://jyoto.fit.jp/index"},
+  {"name":"城南理数","type":"公立","score":"F65","course":"理数コース（F65）","url":"https://jonan.fku.ed.jp/"},
+  {"name":"西南学院","type":"私立","score":"F65","course":"普通（F65）","url":"https://hs.seinan.ed.jp/senior/"},
+  {"name":"中村学園高等学校","type":"私立","score":"F65・F59・F55","course":"アカデミックAクラス（F65）／アカデミックBクラス（F59）／アクティブクラス（F55）","url":"https://www.nakamura-njh.ed.jp/senior/education/index.html"},
+  {"name":"春日","type":"公立","score":"F63","course":"普通（F63）","url":"https://kasuga.fku.ed.jp/"},
+  {"name":"北九州高専","type":"高専","score":"F61","course":"生産デザイン工学（F61）","url":"https://www.kct.ac.jp/"},
+  {"name":"福大付属若葉","type":"私立","score":"F61・F58・F56","course":"スーパー特進（F61）／グローバル（F58）／高大一貫（F56）","url":"https://www.f-wakaba.ed.jp/"},
+  {"name":"有明高専","type":"高専","score":"F60","course":"創造工学（F60）","url":"https://www.ariake-nct.ac.jp/"},
+  {"name":"筑紫中央","type":"公立","score":"F60","course":"普通（F60）","url":"https://chikushichuo.fku.ed.jp/"},
+  {"name":"福岡中央","type":"公立","score":"F58","course":"普通（F58）","url":"https://fchs.fku.ed.jp/"},
+  {"name":"筑紫台","type":"私立","score":"F58・F53・F44・F43","course":"アドバンス（F58）／特別進学（F53）／進学・総合学科（F44）／工業技術（F43）","url":"https://chikushidai.ed.jp/"},
+  {"name":"福岡雙葉","type":"私立","score":"F57・F50","course":"スーパー特進・医進サイエンス・グローバルリーダー（F57）／みらい共創（F50）","url":"https://www.fukuokafutaba.ed.jp/highschool/"},
+  {"name":"福岡女学院","type":"私立","score":"F56・F48","course":"特進（F56）／進学・音楽（F48）","url":"https://www0.fukujo.ac.jp/js/"},
+  {"name":"筑紫","type":"公立","score":"F55","course":"普通（F55）","url":"https://chikushi.fku.ed.jp/"},
+  {"name":"福翔","type":"公立","score":"F55","course":"総合（F55）","url":"https://www.fukusho.ed.jp/"},
+  {"name":"福岡工業","type":"公立","score":"F53・F52・F51・F50・F49・F47","course":"工業進学（F53）／建築（F52）／機械工学（F51）／電気工学・電子情報工学・機械工学（F50）／都市工学（F49）／環境化学・染織デザイン（F47）","url":"https://fths.fku.ed.jp/"},
+  {"name":"香椎工業","type":"公立","score":"F52・F48・F47・F44","course":"情報技術（F52）／電子機械（F48）／機械（F47）／工業化学・電気（F44）","url":"https://kashii-tech.fku.ed.jp/"},
+  {"name":"福岡海星女子学院","type":"私立","score":"F52・F46・F43","course":"グローバル特進（F52）／国際教養（F46）／進学（F43）","url":"https://www.f-kaisei.ed.jp/senior/"},
+  {"name":"博多","type":"私立","score":"F51・F50・F46・F42","course":"特進シリウス（F51）／看護（F50）／特進ドリーム・進学（F46）／キャリアデザイン（F42）","url":"https://hakata.ed.jp/highschool/"},
+  {"name":"博多女子","type":"私立","score":"F51・F44","course":"特別進学（F51）／普通進学・スーパーライセンス・トータルビジネス（F44）","url":"https://www.ghakata.ac.jp/sh/"},
+  {"name":"香椎ファッションデザイン","type":"公立","score":"F50","course":"ファッションデザイン（F50）","url":"https://kashii.fku.ed.jp/"},
+  {"name":"福岡常葉","type":"私立","score":"F50・F42・F40・F39","course":"特別進学（F50）／情報処理（F42）／ベーシックビューティー（F40）／進学（F39）","url":"https://ssl.f-joyo.ed.jp/"},
+  {"name":"福岡第一","type":"私立","score":"F50・F37","course":"国際（F50）／国公立大学進学・普通・アスリート特進・製菓・音楽・ソーシャル心理・AI・機械・航空・自動車メカニック・建築デザイン・コンピュータAI・デザイン・マンガアニメーション・ドローンパイロット（F37）","url":"https://f.f-parama.ed.jp/"},
+  {"name":"精華女子","type":"私立","score":"F50・F47・F42","course":"特別進学（F50）／看護（F47）／進学・普通ドリカム・保育福祉・食物調理・製菓（F42）","url":"https://www.seika-ghs.ed.jp/"},
+  {"name":"博多青松","type":"公立","score":"F49・F47","course":"普通（F49）／情報科学（F47）","url":"https://seisho.fku.ed.jp/"},
+  {"name":"武蔵台","type":"公立","score":"F49","course":"普通（F49）","url":"https://musashidai.fku.ed.jp/"},
+  {"name":"柏陵","type":"公立","score":"F46","course":"普通・環境科学（F46）","url":"https://hakuryo.fku.ed.jp/"},
+  {"name":"太宰府","type":"公立","score":"F46・F41","course":"芸術（F46）／普通（F41）","url":"https://dazaifu.fku.ed.jp/"},
+  {"name":"福岡農業","type":"公立","score":"F46・F44・F42","course":"食品科学（F46）／環境活用・生活デザイン（F44）／都市園芸（F42）","url":"https://fukuoka-agr.fku.ed.jp/"},
+  {"name":"博多工業","type":"公立","score":"F46","course":"工業（F46）","url":"https://www.hakatath.ed.jp/"},
+  {"name":"福岡女子商業","type":"私立","score":"F46","course":"特進・ビジネスアクション・デジタルフロンティア（F46）","url":"https://yashima.ac.jp/fgchs/"},
+  {"name":"福岡講倫館","type":"公立","score":"F45","course":"総合学科（F45）","url":"https://kourin.fku.ed.jp/"},
+  {"name":"純真","type":"私立","score":"F43","course":"共創・進学・キャリア探究・デジタル探究（F43）","url":"https://junshin-hs.ed.jp/"},
+  {"name":"沖学園","type":"私立","score":"F40・F39","course":"隆徳館・文理進学・キャリア教育・グローバルコミュニケーション・アスリート（F40）／社会総合学科（F39）","url":"https://oki.ed.jp/"},
+  {"name":"水産","type":"公立","score":"F37","course":"海洋・食品流通・アクアライフ（F37）","url":"https://suisan.fku.ed.jp/"},
+  {"name":"第一薬科大付属","type":"私立","score":"F37","course":"芸能・保育・動物愛育・ハイフレックス普通・スポーツマネジメント・食マネジメント・コスメティックマネジメント（F37）","url":"https://d.f-parama.ed.jp/"},
+  {"name":"福岡共創","type":"公立","score":"F46","course":"総合学科（F46）","url":"https://fukujohs.ed.jp/"}
 ];
-// Fスコア一覧表（令和8年6月更新）
+// Fスコア一覧表（令和8年10月更新）
 function showFscoreTable() {
   const area = document.getElementById("fscoreTable");
   if (!area) return;
@@ -632,42 +627,42 @@ function showFscoreTable() {
         </thead>
         <tbody>
   `;
-// Fスコア別の学校情報（令和8年6月更新）
+// Fスコア別の学校情報（令和8年10月更新）
 const fscoreData = {
   70: { public: "筑紫丘（理数）", private: "福大付属大濠（スーパー進学）" },
   69: { public: "", private: "九産大付属九州（スーパー特進）" },
   68: { public: "筑紫丘（普通）", private: "" },
-  67: { public: "", private: "東福岡（医進・サイエンス）／九産大付属九州産業（スーパー特進）／筑陽学園（特進S選抜）" },
-  66: { public: "久留米高専（情報科学科）", private: "筑紫女学園（医進）／城東（Ⅰ類特別選抜）" },
-  65: { public: "久留米高専（生物応用化学・電気電子工学）／城南（理数）", private: "西南学院（普通）／中村学園（アカデミックA）" },
-  64: { public: "久留米高専（機械工学）", private: "" },
-  63: { public: "久留米高専（材料システム工学）／春日（普通）", private: "福大付属大濠（進学）／九産大付属九州（特別進学）／東福岡（国際教養）／筑紫女学園（Ⅰ類）" },
-  62: { public: "", private: "九産大付属九州産業（特進）／筑陽学園（特別進学S）" },
-  61: { public: "北九州高専（生産デザイン工学）", private: "福大付属若葉（スーパー特進）／城東（Ⅰ類）" },
+  67: { public: "", private: "東福岡（医進・サイエンス）／九産大付属九州産業（スーパー特進）／筑陽学園（特進S選抜理数・特進S選抜文理）" },
+  66: { public: "久留米高専（情報科学科）", private: "筑紫女学園（医進S）／城東（Ⅰ類特別選抜）" },
+  65: { public: "久留米高専（生物応用化学・電気電子工学）／城南（理数コース）", private: "西南学院（普通）／中村学園（アカデミックAクラス）" },
+  64: { public: "久留米高専（機械工学）", private: "東福岡（国際教養）" },
+  63: { public: "久留米高専（材料システム工学）／春日（普通）", private: "福大付属大濠（進学）／九産大付属九州（特別進学）／東福岡（国際教養）" },
+  62: { public: "", private: "九産大付属九州産業（特進）／筑陽学園（特別進学S）／筑紫女学園（Ⅰ類）／城東（Ⅰ類）" },
+  61: { public: "北九州高専（生産デザイン工学）", private: "福大付属若葉（スーパー特進）" },
   60: { public: "有明高専（創造工学）／筑紫中央（普通）", private: "東福岡（文理共創）" },
-  59: { public: "福岡中央（普通）", private: "九州（特進）／福岡雙葉（特進・グローバルリーダー・医進サイエンス）／筑紫台（アドバンス）" },
-58: { public: "", private: "中村学園（アカデミックB）／福大附属若葉（グローバル）" },
-57: { public: "", private: "九産大付属九州産業（準特進）／城東（Ⅱ類特別選抜）" },
-56: { public: "筑紫（普通）／福岡工業（工業進学）", private: "福大附属若葉（高大一貫）／筑紫女学園（Ⅱ類）" },
-55: { public: "福翔（総合）", private: "" },
-54: { public: "福岡工業（機械工学）", private: "筑陽学園（特進）" },
-53: { public: "福岡工業（電子情報工学）", private: "九州（進学）／城東（Ⅱ類）／東福岡（フロンティア）／博多女子（特進）" },
-52: { public: "福岡工業（建築・電気工学）／香椎工業（情報技術）", private: "精華女子（特進）" },
-51: { public: "福岡工業（都市工学）／博多青松（普通）", private: "博多（特進シリウス）" },
-50: { public: "武蔵台（普通）／香椎（ファッションデザイン）", private: "九産大付属九州産業（進学）／中村学園（アクティブ）／福岡第一（国際）／福岡常葉（特進）" },
-  49: { public: "福岡工業（環境科学・染色デザイン）／福岡女子（食物調理）", private: "" },
-48: { public: "香椎工業（電子機械・機械）／博多工業（建築）／博多青松（情報科学）", private: "九州（造形芸術）／福岡女学院（進学）" },
-47: { public: "柏陵（普通・環境科学）／博多工業（インテリア）／太宰府（芸術）／福岡農業（食品科学）", private: "筑陽学園（進学・デザイン）／精華女子（看護）／福岡女子商業（ビジネスアクション・デジタルフロンティア）／福岡海星女子学院（国際教養）" },
-46: { public: "博多工業（電子情報・自動車工学）／福岡女子（国際教養）／福岡講倫館（総合学科）", private: "博多（進学・特進ドリーム）" },
-45: { public: "香椎工業（電気）／福岡女子（生活情報・保育福祉）／福岡農業（環境活用・生活デザイン）", private: "九産大付属九州産業（創造工学）／城東（基礎工学）" },
-44: { public: "香椎工業（工業化学）／博多工業（機械・画像工学）／福岡女子（普通・服飾デザイン）", private: "筑紫台（進学・総合学科）／博多女子（普通進学・トータルビジネス・スーパーライセンス）" },
-43: { public: "", private: "筑紫台（工業技術）／福岡海星女子学院（進学）／純真（普通・進学・共創・キャリア探究）" },
-42: { public: "太宰府（普通）／福岡農業（都市園芸）", private: "精華女子（進学・普通・保育福祉・食物調理・製菓）／博多（キャリアデザイン）／福岡常葉（情報処理）" },
-41: { public: "", private: "" },
-40: { public: "", private: "福岡常葉（ベーシックビューティー）／沖学園（隆徳館・文理進学・キャリア教育・グローバルコミュニケーション）" },
+  59: { public: "", private: "九産大付属九州（準特進）／中村学園（アカデミックBクラス）" },
+  58: { public: "福岡中央（普通）", private: "福大付属若葉（グローバル）／筑紫台（アドバンス）" },
+  57: { public: "", private: "九産大付属九州産業（準特進）／城東（Ⅱ類特別選抜）／福岡雙葉（スーパー特進・医進サイエンス・グローバルリーダー）" },
+  56: { public: "", private: "福大付属若葉（高大一貫）／福岡女学院（特進）" },
+  55: { public: "筑紫（普通）／福翔（総合）", private: "筑紫女学園（Ⅱ類）／中村学園（アクティブクラス）" },
+  54: { public: "", private: "筑陽学園（特別進学）" },
+  53: { public: "福岡工業（工業進学）", private: "東福岡（フロンティア）／筑紫台（特別進学）／九産大付属九州（進学）／城東（Ⅱ類・電気工学・情報工学スペシャリスト）" },
+  52: { public: "福岡工業（建築）／香椎工業（情報技術）", private: "福岡海星女子学院（グローバル特進）" },
+  51: { public: "福岡工業（機械工学）", private: "博多（特進シリウス）／博多女子（特別進学）" },
+  50: { public: "福岡工業（電気工学・電子情報工学・機械工学）／香椎（ファッションデザイン）", private: "九産大付属九州産業（進学）／福岡雙葉（みらい共創）／博多（看護）／福岡常葉（特別進学）／福岡第一（国際）／精華女子（特別進学）" },
+  49: { public: "博多青松（普通）／武蔵台（普通）／福岡工業（都市工学）", private: "" },
+  48: { public: "香椎工業（電子機械）", private: "九産大付属九州（造形芸術）／福岡女学院（進学・音楽）" },
+  47: { public: "福岡工業（環境化学・染織デザイン）／香椎工業（機械）／博多青松（情報科学）", private: "筑陽学園（進学・デザイン）／精華女子（看護）" },
+  46: { public: "柏陵（普通・環境科学）／太宰府（芸術）／福岡農業（食品科学）／博多工業（工業）／福岡共創（総合学科）", private: "福岡女子商業（特進・ビジネスアクション・デジタルフロンティア）／福岡海星女子学院（国際教養）／博多（特進ドリーム・進学）／城東（基礎工学）" },
+  45: { public: "福岡講倫館（総合学科）", private: "九産大付属九州産業（創造工学）" },
+  44: { public: "福岡農業（環境活用・生活デザイン）／香椎工業（工業化学・電気）", private: "筑紫台（進学・総合学科）／博多女子（普通進学・スーパーライセンス・トータルビジネス）" },
+  43: { public: "", private: "筑紫台（工業技術）／福岡海星女子学院（進学）／純真（共創・進学・キャリア探究・デジタル探究）" },
+  42: { public: "福岡農業（都市園芸）", private: "精華女子（進学・普通ドリカム・保育福祉・食物調理・製菓）／博多（キャリアデザイン）／福岡常葉（情報処理）" },
+  41: { public: "太宰府（普通）", private: "" },
+  40: { public: "", private: "福岡常葉（ベーシックビューティー）／沖学園（隆徳館・文理進学・キャリア教育・グローバルコミュニケーション・アスリート）" },
   39: { public: "", private: "沖学園（社会総合学科）／福岡常葉（進学）" },
-38: { public: "", private: "" },
-37: { public: "水産（海洋・食品流通・アクアライフ）／早良（スポーツコミュニケーション）", private: "福岡第一（国公立大学進学・普通・アスリート特進・製菓・音楽・ソーシャル心理・機械・航空・自動車メカニック・建築デザイン・コンピュータAI・デザイン・マンガ・ドローン・保育・パラマ）／第一薬科大付属（医療系特進・普通・芸能・ビジネス・食ビジネス・ビューティービジネス・保育・動物愛育・ハイフレックス普通・スポーツマネジメント・食マネジメント・コスメティックマネジメント）" }
+  38: { public: "", private: "" },
+  37: { public: "水産（海洋・食品流通・アクアライフ）", private: "福岡第一（国公立大学進学・普通・アスリート特進・製菓・音楽・ソーシャル心理・AI・機械・航空・自動車メカニック・建築デザイン・コンピュータAI・デザイン・マンガアニメーション・ドローンパイロット）／第一薬科大付属（芸能・保育・動物愛育・ハイフレックス普通・スポーツマネジメント・食マネジメント・コスメティックマネジメント）" }
 };
   // 学校名だけを色付き・太字にする
 function colorSchoolNames(text, color) {
